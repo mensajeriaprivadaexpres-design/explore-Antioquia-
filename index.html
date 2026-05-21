@@ -8,8 +8,6 @@
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
   body{background:linear-gradient(180deg,#06080d 0%,#090e18 55%,#07090f 100%);min-height:100vh;font-family:'Segoe UI',sans-serif;color:#fff;max-width:430px;margin:0 auto;}
   input,textarea,select{font-family:inherit;}
-
-  /* HEADER */
   .header{background:linear-gradient(180deg,#080a10,#0c1120);border-bottom:1px solid rgba(201,168,76,0.13);padding:22px 20px 16px;display:flex;flex-direction:column;align-items:center;}
   .logo-rule{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
   .logo-rule-line{height:1px;background:linear-gradient(to right,transparent,#c9a84c);}
@@ -24,8 +22,6 @@
   .logo-tp{font-family:Georgia,serif;font-size:11px;letter-spacing:6px;color:#fff;text-transform:uppercase;text-shadow:0 0 8px rgba(255,255,255,0.9),0 0 18px rgba(255,255,255,0.4);cursor:pointer;user-select:none;-webkit-user-select:none;padding:4px 8px;}
   .spotify-btn{margin-top:16px;display:flex;flex-direction:column;align-items:center;gap:6px;background:transparent;border:none;cursor:pointer;padding:4px 10px;}
   .spotify-btn span{font-family:Georgia,serif;font-size:11px;color:rgba(200,220,230,0.6);letter-spacing:1.2px;font-style:italic;}
-
-  /* QUICK BUTTONS */
   .quick-row{display:flex;gap:9px;margin:10px 12px 2px;}
   .quick-btn{flex:1;display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:linear-gradient(135deg,rgba(13,20,34,0.97),rgba(9,16,28,0.99));border:1px solid rgba(0,180,200,0.16);border-radius:14px;cursor:pointer;color:#e8dfd0;transition:border-color 0.2s;gap:10px;}
   .quick-btn.active{border-color:rgba(201,168,76,0.52);box-shadow:0 0 20px rgba(201,168,76,0.1);}
@@ -33,8 +29,6 @@
   .quick-btn .icon{font-size:22px;}
   .quick-btn .label{font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
   .quick-chev{color:#c9a84c;font-size:18px;transition:transform 0.3s;line-height:1;display:inline-block;}
-
-  /* CARDS */
   .card{background:linear-gradient(135deg,rgba(13,20,34,0.97),rgba(9,16,28,0.99));border:1px solid rgba(0,180,200,0.16);border-radius:14px;margin:9px 12px;overflow:hidden;transition:border-color 0.25s;}
   .card.active{border-color:rgba(201,168,76,0.52);box-shadow:0 0 20px rgba(201,168,76,0.1);}
   .card-header{display:flex;align-items:center;padding:14px 16px;cursor:pointer;gap:12px;}
@@ -45,8 +39,6 @@
   .card-chev.open{transform:rotate(180deg);}
   .card-body{padding:2px 16px 16px;display:none;}
   .card-body.open{display:block;}
-
-  /* INPUTS */
   .inp{background:rgba(255,255,255,0.05);border:1px solid rgba(0,180,200,0.2);border-radius:10px;padding:11px 13px;color:#fff;font-size:14px;width:100%;outline:none;}
   .inp::placeholder{color:rgba(200,220,240,0.35);}
   .lbl{font-size:11px;font-weight:700;color:rgba(201,168,76,0.75);margin-bottom:5px;display:block;letter-spacing:0.6px;text-transform:uppercase;}
@@ -55,44 +47,27 @@
   .route-dot{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:9px;height:9px;border-radius:50%;}
   .route-inp{padding-left:32px;}
   select.inp{appearance:none;-webkit-appearance:none;}
-
-  /* BUTTONS */
   .btn-gold{background:linear-gradient(135deg,#c9a84c,#a87e28);border:none;border-radius:11px;padding:13px 18px;color:#000;font-weight:700;font-size:14px;width:100%;cursor:pointer;box-shadow:0 4px 16px rgba(201,168,76,0.28);}
   .btn-green{background:linear-gradient(135deg,#1adb7a,#13b85a);border:none;border-radius:11px;padding:13px 18px;color:#000;font-weight:700;font-size:14px;width:100%;cursor:pointer;box-shadow:0 4px 16px rgba(26,219,122,0.25);}
   .btn-wa{background:linear-gradient(135deg,#25d366,#1cb350);border:none;border-radius:11px;padding:13px 18px;color:#000;font-weight:700;font-size:14px;width:100%;cursor:pointer;margin-top:10px;}
   .btn-sm-red{background:rgba(255,55,55,0.1);border:1px solid rgba(255,55,55,0.26);border-radius:7px;padding:5px 9px;color:#ff5555;font-size:11px;cursor:pointer;}
   .btn-cancel{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:10px;color:rgba(200,220,240,0.5);font-size:13px;cursor:pointer;flex:1;}
-
-  /* PRICE ROW */
   .prow{display:flex;justify-content:space-between;align-items:center;background:rgba(0,0,0,0.22);border-radius:11px;padding:12px 14px;margin-bottom:8px;}
   .ptag{color:#c9a84c;font-weight:700;font-size:18px;}
   .prow-sub{font-size:11px;color:rgba(200,220,240,0.4);margin-top:2px;}
-
-  /* NOTE BOX */
   .nb{background:rgba(0,0,0,0.26);border:1px solid rgba(201,168,76,0.22);border-radius:10px;padding:11px 13px;font-size:13px;color:rgba(220,230,240,0.8);margin-bottom:10px;line-height:1.6;}
   .nb.teal{border-color:rgba(0,180,200,0.22);}
   .nb.green{border-color:rgba(26,219,122,0.22);}
-
-  /* GALLERY */
-  .gal-note{background:rgba(0,180,200,0.07);border:1px solid rgba(0,180,200,0.2);border-radius:10px;padding:10px 12px;margin-bottom:10px;font-size:12px;color:rgba(200,220,240,0.7);line-height:1.6;}
   .gal-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
   .gal-cell{aspect-ratio:1;border-radius:10px;overflow:hidden;background:rgba(255,255,255,0.03);border:1px solid rgba(201,168,76,0.13);position:relative;display:flex;align-items:center;justify-content:center;cursor:pointer;}
   .gal-cell img{width:100%;height:100%;object-fit:cover;display:block;}
   .gal-placeholder{display:flex;flex-direction:column;align-items:center;color:rgba(201,168,76,0.3);font-size:11px;gap:3px;}
   .gal-placeholder .plus{font-size:24px;}
-
-  /* STARS */
   .stars{color:#c9a84c;font-size:13px;letter-spacing:1px;}
-
-  /* REVIEW ITEM */
   .review-item{padding:13px 0;border-bottom:1px solid rgba(255,255,255,0.06);}
   .review-name{font-weight:700;font-size:14px;margin-bottom:4px;}
   .review-text{margin-top:6px;font-size:13px;color:rgba(220,230,240,0.72);line-height:1.55;}
-
-  /* SUCCESS BANNER */
   .ok{background:rgba(26,219,122,0.12);border:1px solid rgba(26,219,122,0.32);border-radius:11px;padding:12px 14px;text-align:center;margin-bottom:12px;font-size:13px;color:#1adb7a;font-weight:600;}
-
-  /* ADMIN */
   .admin-wrap{padding:12px 12px 40px;}
   .admin-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px;}
   .admin-title{font-size:16px;font-weight:700;color:#c9a84c;font-family:Georgia,serif;}
@@ -117,23 +92,16 @@
   .hor-btn{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:9px;padding:11px 3px;color:#ddd;font-size:12px;font-weight:600;cursor:pointer;text-align:center;}
   .hor-btn.blocked{background:rgba(180,40,40,0.2);border-color:rgba(200,50,50,0.36);color:rgba(255,85,85,0.6);text-decoration:line-through;}
   .hint{font-size:11px;color:rgba(200,220,240,0.32);}
-
-  /* MODAL */
   .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:600;display:flex;align-items:center;justify-content:center;padding:24px;}
   .modal-box{background:linear-gradient(135deg,rgba(13,20,34,0.99),rgba(9,16,28,1));border:1px solid rgba(201,168,76,0.4);border-radius:18px;padding:28px 22px;width:100%;max-width:320px;}
   .modal-title{font-size:18px;font-weight:700;color:#c9a84c;text-align:center;font-family:Georgia,serif;margin-bottom:4px;}
   .modal-sub{text-align:center;color:rgba(200,220,240,0.42);font-size:12px;margin-bottom:20px;}
   .modal-cancel{background:none;border:none;color:rgba(200,220,240,0.35);font-size:12px;cursor:pointer;width:100%;margin-top:12px;text-align:center;}
-
-  /* IMG MODAL */
   .img-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.93);z-index:700;display:flex;align-items:center;justify-content:center;}
   .img-overlay img{max-width:95%;max-height:90vh;border-radius:12px;}
-
-  /* VALORAMOS */
   .valoramos{font-family:Georgia,serif;font-size:15px;color:#c9a84c;text-align:center;margin-bottom:13px;letter-spacing:1px;}
-
-  /* GAL SUBTITLE */
   .gal-sub{font-family:Georgia,serif;font-size:12px;color:rgba(201,168,76,0.7);text-align:center;letter-spacing:1px;margin-bottom:10px;padding-top:6px;}
+  .gal-note{background:rgba(0,180,200,0.07);border:1px solid rgba(0,180,200,0.2);border-radius:10px;padding:10px 12px;margin-bottom:10px;font-size:12px;color:rgba(200,220,240,0.7);line-height:1.6;}
 </style>
 </head>
 <body>
@@ -158,10 +126,8 @@
   </div>
 </div>
 
-<!-- APP -->
+<!-- APP HOME -->
 <div id="appHome">
-
-  <!-- HEADER -->
   <div class="header">
     <div class="logo-rule">
       <div class="logo-rule-line" style="width:56px"></div>
@@ -180,9 +146,7 @@
       <div class="logo-rule-dot" style="opacity:0.45"></div>
       <div class="logo-bottom-line" style="background:linear-gradient(to left,transparent,#c9a84c)"></div>
     </div>
-    <!-- TRANSPORTE PRIVADO — triple tap = admin -->
     <div class="logo-tp" id="tpText" onclick="tpTap()">Transporte Privado</div>
-    <!-- Spotify -->
     <button class="spotify-btn" onclick="window.open('https://linktr.ee/omardejmejia','_blank')">
       <svg width="36" height="36" viewBox="0 0 24 24" fill="#1ED760" style="filter:drop-shadow(0 0 8px rgba(30,215,96,0.6))">
         <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.516 17.312a.75.75 0 01-1.032.25c-2.827-1.727-6.39-2.118-10.583-1.16a.75.75 0 01-.334-1.463c4.588-1.048 8.523-.597 11.7 1.341a.75.75 0 01.249 1.032zm1.472-3.273a.938.938 0 01-1.29.308c-3.234-1.988-8.163-2.563-11.99-1.403a.937.937 0 01-.543-1.794c4.37-1.325 9.8-.683 13.514 1.6a.938.938 0 01.309 1.289zm.127-3.407C15.3 8.39 8.97 8.18 5.5 9.215a1.125 1.125 0 01-.651-2.152c4.01-1.215 10.68-.98 14.893 1.57a1.125 1.125 0 01-1.127 1.999z"/>
@@ -191,7 +155,6 @@
     </button>
   </div>
 
-  <!-- QUICK BUTTONS -->
   <div class="quick-row">
     <button class="quick-btn" id="btnGal" onclick="toggleSection('gal')">
       <div class="quick-btn-left"><span class="icon">📸</span><span class="label">Galería</span></div>
@@ -203,7 +166,6 @@
     </button>
   </div>
 
-  <!-- GALERÍA PANEL -->
   <div class="card active" id="secGal" style="display:none">
     <div class="card-body open">
       <div class="gal-sub">Nuestros viajes · Nuestros recuerdos</div>
@@ -211,7 +173,6 @@
     </div>
   </div>
 
-  <!-- RESEÑAS PANEL -->
   <div class="card active" id="secRese" style="display:none">
     <div class="card-body open">
       <div id="reseñasList"></div>
@@ -305,7 +266,6 @@
 
   <div style="height:20px"></div>
 
-  <!-- FOOTER -->
   <div style="margin:0 12px 30px;padding:18px 16px;border-top:1px solid rgba(201,168,76,0.2);display:flex;flex-direction:column;align-items:center;gap:6px">
     <div style="display:flex;align-items:center;gap:8px">
       <div style="width:28px;height:1px;background:linear-gradient(to right,transparent,#c9a84c);opacity:0.5"></div>
@@ -316,8 +276,7 @@
     <div style="font-family:Georgia,serif;font-size:13px;letter-spacing:3px;color:rgba(201,168,76,0.65);font-weight:700;text-transform:uppercase">omardejmejia</div>
     <div style="font-family:Georgia,serif;font-size:9px;letter-spacing:1.5px;color:rgba(255,255,255,0.55)">© 2026 · Todos los derechos reservados</div>
   </div>
-
-</div><!-- end appHome -->
+</div>
 
 <!-- ADMIN PANEL -->
 <div id="appAdmin" style="display:none">
@@ -344,25 +303,19 @@
 </div>
 
 <script>
-// ── DATA ──────────────────────────────────────────────────────────
-const WA = "573008150549";
-const PASS = "1975";
-const HORARIOS = ["05:00","06:00","07:00","08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00"];
+const WA="573008150549";
+const PASS="1975";
+const HORARIOS=["05:00","06:00","07:00","08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00"];
 
-const GALERIA_URLS = [
-  "https://i.imgur.com/7edJtTQ.jpeg",
-  "https://i.imgur.com/F3cUWJx.jpeg",
-  "https://i.imgur.com/c8o60gk.jpeg",
-  "https://i.imgur.com/5nBgIMu.jpeg",
-  "https://i.imgur.com/EoXZuWc.jpeg",
-  "https://i.imgur.com/wZMYeJR.jpeg",
-  "https://i.imgur.com/cxmL3ln.jpeg",
-  "https://i.imgur.com/5CZe8fs.jpeg",
-  "https://i.imgur.com/9e4zszX.jpeg",
-  null
+const GALERIA_URLS=[
+  "https://i.imgur.com/7edJtTQ.jpeg","https://i.imgur.com/F3cUWJx.jpeg",
+  "https://i.imgur.com/c8o60gk.jpeg","https://i.imgur.com/5nBgIMu.jpeg",
+  "https://i.imgur.com/EoXZuWc.jpeg","https://i.imgur.com/wZMYeJR.jpeg",
+  "https://i.imgur.com/cxmL3ln.jpeg","https://i.imgur.com/5CZe8fs.jpeg",
+  "https://i.imgur.com/9e4zszX.jpeg",null
 ];
 
-const MUNICIPIOS = [
+const MUNICIPIOS=[
   {n:"Abejorral",s:"La Ceja Oriente",k:"91,9 Km",t:"2H 24 min",p:400000},
   {n:"Abriaquí",s:"Occidente",k:"136 Km",t:"3H 35 min",p:630000},
   {n:"Albania",s:"Conexión Pacífico 1",k:"50,4 Km",t:"1H 22 min",p:180000},
@@ -481,7 +434,7 @@ const MUNICIPIOS = [
   {n:"Zaragoza",s:"Bajo Cauca",k:"255 Km",t:"4H 10 min",p:935000}
 ];
 
-const RESEÑAS_BASE = [
+const RESEÑAS_BASE=[
   {id:1,nombre:"Marcela Ríos",texto:"La verdad no esperaba tanto. Lo llamé casi de último momento para llevarme al aeropuerto y llegó puntualísimo. El carro limpio, buena música y sin afanes. Ya lo tengo guardado para la próxima.",aprobada:true},
   {id:2,nombre:"Pipe Cardona",texto:"Parce, este man es una chimba. Llevó a mi abuela a unas citas en el centro y me mandó foto de dónde la dejó y todo. Tranquilidad total. Lo recomiendo con los ojos cerrados.",aprobada:true},
   {id:3,nombre:"Susana V.",texto:"Fuimos a Guatapé con unas amigas y Omar nos esperó, nos llevó a los miradores, sin afanes, sin mal genio. Cobró lo justo. Muy diferente a otros servicios que uno contrata y terminan apurándonos.",aprobada:true},
@@ -489,72 +442,50 @@ const RESEÑAS_BASE = [
   {id:5,nombre:"Lina M.",texto:"Me encantó que al final del recorrido me mandó el mapa con todo: cuántos kilómetros, cuánto tiempo y el valor. Eso me parece muy honesto. Ya le conté a mi familia y todos lo van a usar.",aprobada:true}
 ];
 
-// ── STATE ─────────────────────────────────────────────────────────
-let reservas = [], clientes = [], horariosBlocked = [], reseñas = [...RESEÑAS_BASE];
-let galeria = [...GALERIA_URLS];
-let adminLogged = false, currentTab = "reservas";
-let tpCount = 0, tpTimer = null;
-let shareUnlocked = false;
+let reservas=[],clientes=[],horariosBlocked=[],reseñas=[...RESEÑAS_BASE];
+let galeria=[...GALERIA_URLS];
+let adminLogged=false,currentTab="reservas";
+let tpCount=0,tpTimer=null,shareUnlocked=false;
 
 function load(){
-  try{ const r=localStorage.getItem("dor_rv"); if(r) reservas=JSON.parse(r); }catch{}
-  try{ const c=localStorage.getItem("dor_cl"); if(c) clientes=JSON.parse(c); }catch{}
-  try{ const h=localStorage.getItem("dor_hb"); if(h) horariosBlocked=JSON.parse(h); }catch{}
-  try{ const re=localStorage.getItem("dor_re"); if(re) reseñas=JSON.parse(re); }catch{}
-  try{ const g=localStorage.getItem("dor_gal"); if(g) galeria=JSON.parse(g); }catch{}
+  try{const r=localStorage.getItem("dor_rv");if(r)reservas=JSON.parse(r);}catch{}
+  try{const c=localStorage.getItem("dor_cl");if(c)clientes=JSON.parse(c);}catch{}
+  try{const h=localStorage.getItem("dor_hb");if(h)horariosBlocked=JSON.parse(h);}catch{}
+  try{const re=localStorage.getItem("dor_re");if(re)reseñas=JSON.parse(re);}catch{}
+  try{const g=localStorage.getItem("dor_gal");if(g)galeria=JSON.parse(g);}catch{}
 }
-function save(k,d){ try{localStorage.setItem(k,JSON.stringify(d));}catch{} }
+function save(k,d){try{localStorage.setItem(k,JSON.stringify(d));}catch{}}
+function fp(n){return"$"+n.toLocaleString("es-CO").replace(/,/g,".");}
 
-// ── FORMAT ────────────────────────────────────────────────────────
-function fp(n){ return "$"+n.toLocaleString("es-CO").replace(/,/g,"."); }
+window.onload=function(){load();buildHorarioSelect();renderGaleria();renderReseñas();filtrarMunicipios();};
 
-// ── INIT ─────────────────────────────────────────────────────────
-window.onload = function(){
-  load();
-  buildHorarioSelect();
-  renderGaleria();
-  renderReseñas();
-  filtrarMunicipios();
-};
-
-// ── TRIPLE TAP ────────────────────────────────────────────────────
 function tpTap(){
   tpCount++;
-  if(tpTimer) clearTimeout(tpTimer);
-  if(tpCount>=3){ tpCount=0; openPassModal(); }
-  else{ tpTimer=setTimeout(()=>tpCount=0, 2500); }
+  if(tpTimer)clearTimeout(tpTimer);
+  if(tpCount>=3){tpCount=0;openPassModal();}
+  else{tpTimer=setTimeout(()=>tpCount=0,2500);}
 }
-
-// ── PASS MODAL ────────────────────────────────────────────────────
 function openPassModal(){
   document.getElementById("passModal").style.display="flex";
   document.getElementById("passInput").value="";
   document.getElementById("passError").style.display="none";
   setTimeout(()=>document.getElementById("passInput").focus(),100);
 }
-function closePassModal(){
-  document.getElementById("passModal").style.display="none";
-}
+function closePassModal(){document.getElementById("passModal").style.display="none";}
 function doLogin(){
   if(document.getElementById("passInput").value===PASS){
-    closePassModal();
-    adminLogged=true;
+    closePassModal();adminLogged=true;
     document.getElementById("appHome").style.display="none";
     document.getElementById("appAdmin").style.display="block";
-    updateStats();
-    setTab("reservas", document.querySelector(".tab-btn"));
-  } else {
-    document.getElementById("passError").style.display="block";
-  }
+    updateStats();setTab("reservas",document.querySelector(".tab-btn"));
+  }else{document.getElementById("passError").style.display="block";}
 }
 function salirAdmin(){
-  adminLogged=false;
-  shareUnlocked=false;
+  adminLogged=false;shareUnlocked=false;
   document.getElementById("appAdmin").style.display="none";
   document.getElementById("appHome").style.display="block";
 }
 
-// ── TOGGLE SECTIONS ───────────────────────────────────────────────
 function toggleSection(key){
   const secMap={gal:"secGal",rese:"secRese"};
   const btnMap={gal:"btnGal",rese:"btnRese"};
@@ -563,20 +494,14 @@ function toggleSection(key){
   const btn=document.getElementById(btnMap[key]);
   const chev=document.getElementById(chevMap[key]);
   const isOpen=sec.style.display!=="none";
-  // close all
   document.getElementById("secGal").style.display="none";
   document.getElementById("secRese").style.display="none";
   document.getElementById("btnGal").classList.remove("active");
   document.getElementById("btnRese").classList.remove("active");
   document.getElementById("chevGal").style.transform="rotate(0deg)";
   document.getElementById("chevRese").style.transform="rotate(0deg)";
-  if(!isOpen){
-    sec.style.display="block";
-    btn.classList.add("active");
-    chev.style.transform="rotate(180deg)";
-  }
+  if(!isOpen){sec.style.display="block";btn.classList.add("active");chev.style.transform="rotate(180deg)";}
 }
-
 function toggleCard(key){
   const body=document.getElementById("body"+cap(key));
   const chev=document.getElementById("chev"+cap(key));
@@ -588,76 +513,45 @@ function toggleCard(key){
 }
 function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
 
-// ── GALERÍA ───────────────────────────────────────────────────────
 function renderGaleria(){
-  const grid=document.getElementById("galeriaGrid");
-  if(!grid) return;
+  const grid=document.getElementById("galeriaGrid");if(!grid)return;
   grid.innerHTML="";
   galeria.forEach((url,i)=>{
-    const cell=document.createElement("div");
-    cell.className="gal-cell";
+    const cell=document.createElement("div");cell.className="gal-cell";
     if(url){
-      const img=document.createElement("img");
-      img.src=url; img.alt="foto "+(i+1);
+      const img=document.createElement("img");img.src=url;img.alt="foto "+(i+1);
       img.onerror=function(){this.parentElement.innerHTML='<div class="gal-placeholder"><div class="plus">📷</div><div>Foto '+(i+1)+'</div></div>';};
-      img.onclick=()=>openImgModal(url);
-      cell.appendChild(img);
-    } else {
-      cell.innerHTML='<div class="gal-placeholder"><div class="plus">📷</div><div>Foto '+(i+1)+'</div></div>';
-    }
+      img.onclick=()=>openImgModal(url);cell.appendChild(img);
+    }else{cell.innerHTML='<div class="gal-placeholder"><div class="plus">📷</div><div>Foto '+(i+1)+'</div></div>';}
     grid.appendChild(cell);
   });
 }
+function openImgModal(url){document.getElementById("imgModalSrc").src=url;document.getElementById("imgModal").style.display="flex";}
+function closeImgModal(){document.getElementById("imgModal").style.display="none";}
 
-function openImgModal(url){
-  document.getElementById("imgModalSrc").src=url;
-  document.getElementById("imgModal").style.display="flex";
-}
-function closeImgModal(){
-  document.getElementById("imgModal").style.display="none";
-}
-
-// ── RESEÑAS ───────────────────────────────────────────────────────
 function renderReseñas(){
-  const list=document.getElementById("reseñasList");
-  if(!list) return;
+  const list=document.getElementById("reseñasList");if(!list)return;
   const aprobadas=reseñas.filter(r=>r.aprobada);
-  list.innerHTML=aprobadas.map(r=>`
-    <div class="review-item">
-      <div class="review-name">${r.nombre}</div>
-      <div class="stars">★★★★★</div>
-      <div class="review-text">${r.texto}</div>
-    </div>`).join("");
+  list.innerHTML=aprobadas.map(r=>`<div class="review-item"><div class="review-name">${r.nombre}</div><div class="stars">★★★★★</div><div class="review-text">${r.texto}</div></div>`).join("");
 }
-
 function enviarReseña(){
   const nombre=document.getElementById("reseñaNombre").value.trim();
   const texto=document.getElementById("reseñaTexto").value.trim();
-  if(!nombre||!texto) return;
-  const nueva={id:Date.now(),nombre,texto,aprobada:false};
-  reseñas.push(nueva);
+  if(!nombre||!texto)return;
+  reseñas.push({id:Date.now(),nombre,texto,aprobada:false});
   save("dor_re",reseñas);
   document.getElementById("reseñaNombre").value="";
   document.getElementById("reseñaTexto").value="";
   document.getElementById("reseñaForm").style.display="none";
   document.getElementById("reseñaOk").style.display="block";
-  setTimeout(()=>{
-    document.getElementById("reseñaOk").style.display="none";
-    document.getElementById("reseñaForm").style.display="block";
-  },3500);
+  setTimeout(()=>{document.getElementById("reseñaOk").style.display="none";document.getElementById("reseñaForm").style.display="block";},3500);
 }
 
-// ── RESERVA ───────────────────────────────────────────────────────
 function buildHorarioSelect(){
-  const sel=document.getElementById("fHorario");
-  if(!sel) return;
+  const sel=document.getElementById("fHorario");if(!sel)return;
   sel.innerHTML='<option value="">Seleccionar horario</option>';
-  HORARIOS.filter(h=>!horariosBlocked.includes(h)).forEach(h=>{
-    const o=document.createElement("option");
-    o.value=h; o.textContent=h; sel.appendChild(o);
-  });
+  HORARIOS.filter(h=>!horariosBlocked.includes(h)).forEach(h=>{const o=document.createElement("option");o.value=h;o.textContent=h;sel.appendChild(o);});
 }
-
 function confirmarReserva(){
   const n=document.getElementById("fNombre").value.trim();
   const nu=document.getElementById("fNumero").value.trim();
@@ -665,227 +559,112 @@ function confirmarReserva(){
   const d=document.getElementById("fDestino").value.trim();
   const f=document.getElementById("fFecha").value;
   const h=document.getElementById("fHorario").value;
-  if(!n||!nu||!r||!d||!f||!h) return;
-  const nueva={id:Date.now(),nombre:n,numero:nu,recogida:r,destino:d,fecha:f,horario:h,estado:"activa",creada:new Date().toLocaleDateString("es-CO")};
-  reservas.push(nueva);
-  save("dor_rv",reservas);
-  if(!clientes.find(c=>c.numero===nu)){
-    clientes.push({nombre:n,numero:nu});
-    save("dor_cl",clientes);
+  if(!n||!nu||!r||!d||!f||!h){
+    alert("Por favor completa todos los campos antes de confirmar.");
+    return;
   }
+  reservas.push({id:Date.now(),nombre:n,numero:nu,recogida:r,destino:d,fecha:f,horario:h,estado:"activa",creada:new Date().toLocaleDateString("es-CO")});
+  save("dor_rv",reservas);
+  if(!clientes.find(c=>c.numero===nu)){clientes.push({nombre:n,numero:nu});save("dor_cl",clientes);}
+
+  // Mensaje a Don Omar
+  const msgOmar=encodeURIComponent(
+    "🚗 *NUEVA RESERVA — Don Omar Rides*\n\n"+
+    "👤 *Cliente:* "+n+"\n"+
+    "📞 *Celular:* "+nu+"\n"+
+    "📍 *Recogida:* "+r+"\n"+
+    "🎯 *Destino:* "+d+"\n"+
+    "📅 *Fecha:* "+f+"\n"+
+    "⏰ *Horario:* "+h
+  );
+  window.open("https://wa.me/"+WA+"?text="+msgOmar,"_blank");
+
+  // Mensaje de confirmación al cliente
+  const nuLimpio=nu.replace(/\D/g,"");
+  const numCliente=nuLimpio.startsWith("57")?nuLimpio:"57"+nuLimpio;
+  const msgCliente=encodeURIComponent(
+    "✅ *¡Reserva confirmada!*\n\n"+
+    "Hola *"+n+"*, tu viaje con *Don Omar Rides* quedó agendado 🚗\n\n"+
+    "📍 *Recogida:* "+r+"\n"+
+    "🎯 *Destino:* "+d+"\n"+
+    "📅 *Fecha:* "+f+"\n"+
+    "⏰ *Horario:* "+h+"\n\n"+
+    "Cualquier duda escríbenos. ¡Buen viaje! 🙌"
+  );
+  setTimeout(()=>window.open("https://wa.me/"+numCliente+"?text="+msgCliente,"_blank"),800);
+
   ["fNombre","fNumero","fRecogida","fDestino","fFecha"].forEach(id=>document.getElementById(id).value="");
   document.getElementById("fHorario").value="";
   document.getElementById("reservaOk").style.display="block";
   setTimeout(()=>document.getElementById("reservaOk").style.display="none",3500);
 }
 
-// ── MUNICIPIOS ────────────────────────────────────────────────────
 function filtrarMunicipios(){
   const q=(document.getElementById("buscarMun")||{value:""}).value.toLowerCase();
-  const list=document.getElementById("munList");
-  if(!list) return;
+  const list=document.getElementById("munList");if(!list)return;
   const filtrados=MUNICIPIOS.filter(m=>m.n.toLowerCase().includes(q));
-  list.innerHTML=filtrados.map(m=>`
-    <div style="padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;justify-content:space-between;align-items:flex-start">
-      <div>
-        <div style="font-weight:700;font-size:14px">${m.n}</div>
-        <div style="color:rgba(200,220,240,0.42);font-size:11px;margin-top:2px">${m.s}</div>
-        <div style="color:rgba(200,220,240,0.32);font-size:11px;margin-top:1px">${m.k} · ${m.t}</div>
-      </div>
-      <div style="color:#c9a84c;font-weight:700;font-size:18px;flex-shrink:0">${fp(m.p)}</div>
-    </div>`).join("");
+  list.innerHTML=filtrados.map(m=>`<div style="padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;justify-content:space-between;align-items:flex-start"><div><div style="font-weight:700;font-size:14px">${m.n}</div><div style="color:rgba(200,220,240,0.42);font-size:11px;margin-top:2px">${m.s}</div><div style="color:rgba(200,220,240,0.32);font-size:11px;margin-top:1px">${m.k} · ${m.t}</div></div><div style="color:#c9a84c;font-weight:700;font-size:18px;flex-shrink:0">${fp(m.p)}</div></div>`).join("");
 }
 
-// ── ADMIN ─────────────────────────────────────────────────────────
 function updateStats(){
-  const activas=reservas.filter(r=>r.estado==="activa");
-  const pend=reseñas.filter(r=>!r.aprobada);
-  document.getElementById("statRes").textContent=activas.length;
+  document.getElementById("statRes").textContent=reservas.filter(r=>r.estado==="activa").length;
   document.getElementById("statCli").textContent=clientes.length;
-  document.getElementById("statRev").textContent=pend.length;
+  document.getElementById("statRev").textContent=reseñas.filter(r=>!r.aprobada).length;
 }
-
-function setTab(key, btn){
+function setTab(key,btn){
   currentTab=key;
   document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
-  if(btn) btn.classList.add("active");
-  else document.querySelectorAll(".tab-btn").forEach(b=>{ if(b.textContent.toLowerCase().includes(key.slice(0,4))) b.classList.add("active"); });
+  if(btn)btn.classList.add("active");
   renderTab();
 }
-
 function renderTab(){
-  const c=document.getElementById("tabContent");
-  updateStats();
-  if(currentTab==="reservas") renderTabReservas(c);
-  else if(currentTab==="horarios") renderTabHorarios(c);
-  else if(currentTab==="clientes") renderTabClientes(c);
-  else if(currentTab==="reseñas") renderTabReseñas(c);
-  else if(currentTab==="galeria") renderTabGaleria(c);
-  else if(currentTab==="compartir") renderTabCompartir(c);
+  const c=document.getElementById("tabContent");updateStats();
+  if(currentTab==="reservas")renderTabReservas(c);
+  else if(currentTab==="horarios")renderTabHorarios(c);
+  else if(currentTab==="clientes")renderTabClientes(c);
+  else if(currentTab==="reseñas")renderTabReseñas(c);
+  else if(currentTab==="galeria")renderTabGaleria(c);
+  else if(currentTab==="compartir")renderTabCompartir(c);
 }
-
 function renderTabReservas(c){
   const activas=reservas.filter(r=>r.estado==="activa");
-  c.innerHTML=`<div class="card"><div style="padding:12px 14px">
-    <span class="sec-title">RESERVAS ACTIVAS</span>
-    ${activas.length===0?'<div style="text-align:center;color:rgba(200,220,240,0.32);padding:10px 0">Sin reservas.</div>'
-    :activas.map(r=>`<div class="res-card">
-      <div class="res-row">
-        <div>
-          <div class="res-name">${r.nombre}</div>
-          <div class="res-phone">📞 ${r.numero}</div>
-          <div class="res-addr">📍 ${r.recogida}</div>
-          <div class="res-addr">🎯 ${r.destino}</div>
-          <div class="res-info">📅 ${r.fecha} · ⏰ ${r.horario}</div>
-        </div>
-        <button class="btn-sm-red" onclick="cancelarReserva(${r.id})">✕</button>
-      </div>
-    </div>`).join("")}
-  </div></div>`;
+  c.innerHTML=`<div class="card"><div style="padding:12px 14px"><span class="sec-title">RESERVAS ACTIVAS</span>${activas.length===0?'<div style="text-align:center;color:rgba(200,220,240,0.32);padding:10px 0">Sin reservas.</div>':activas.map(r=>`<div class="res-card"><div class="res-row"><div><div class="res-name">${r.nombre}</div><div class="res-phone">📞 ${r.numero}</div><div class="res-addr">📍 ${r.recogida}</div><div class="res-addr">🎯 ${r.destino}</div><div class="res-info">📅 ${r.fecha} · ⏰ ${r.horario}</div></div><button class="btn-sm-red" onclick="cancelarReserva(${r.id})">✕</button></div></div>`).join("")}</div></div>`;
 }
-
-function cancelarReserva(id){
-  reservas=reservas.filter(r=>r.id!==id);
-  save("dor_rv",reservas);
-  renderTab();
-}
-
+function cancelarReserva(id){reservas=reservas.filter(r=>r.id!==id);save("dor_rv",reservas);renderTab();}
 function renderTabHorarios(c){
-  c.innerHTML=`<div class="card"><div style="padding:12px 14px">
-    <span class="sec-title">BLOQUEAR / LIBERAR HORARIOS</span>
-    <div class="hor-grid">
-      ${HORARIOS.map(h=>`<button class="hor-btn ${horariosBlocked.includes(h)?'blocked':''}" onclick="toggleHorario('${h}')">${h}</button>`).join("")}
-    </div>
-    <div class="hint">Toca para bloquear · Rojo = bloqueado</div>
-  </div></div>`;
+  c.innerHTML=`<div class="card"><div style="padding:12px 14px"><span class="sec-title">BLOQUEAR / LIBERAR HORARIOS</span><div class="hor-grid">${HORARIOS.map(h=>`<button class="hor-btn ${horariosBlocked.includes(h)?'blocked':''}" onclick="toggleHorario('${h}')">${h}</button>`).join("")}</div><div class="hint">Toca para bloquear · Rojo = bloqueado</div></div></div>`;
 }
-
 function toggleHorario(h){
-  if(horariosBlocked.includes(h)) horariosBlocked=horariosBlocked.filter(x=>x!==h);
-  else horariosBlocked.push(h);
-  save("dor_hb",horariosBlocked);
-  buildHorarioSelect();
-  renderTab();
+  if(horariosBlocked.includes(h))horariosBlocked=horariosBlocked.filter(x=>x!==h);else horariosBlocked.push(h);
+  save("dor_hb",horariosBlocked);buildHorarioSelect();renderTab();
 }
-
 function renderTabClientes(c){
-  c.innerHTML=`<div class="card"><div style="padding:12px 14px">
-    <span class="sec-title">BANCO DE CLIENTES</span>
-    ${clientes.length===0?'<div style="text-align:center;color:rgba(200,220,240,0.32);padding:8px 0">Sin clientes registrados.</div>'
-    :clientes.map(cl=>`<div class="client-row"><span style="font-weight:600">${cl.nombre}</span><span class="client-num">${cl.numero}</span></div>`).join("")}
-    ${clientes.length>0?`<button class="btn-green" style="margin-top:13px" onclick="window.open('https://wa.me/${WA}?text=Hola!%20Soy%20Don%20Omar%20Rides%20🚗%20¿Listo%20para%20tu%20próximo%20viaje?','_blank')">Saludar a todos los clientes</button>`:''}
-  </div></div>`;
+  c.innerHTML=`<div class="card"><div style="padding:12px 14px"><span class="sec-title">BANCO DE CLIENTES</span>${clientes.length===0?'<div style="text-align:center;color:rgba(200,220,240,0.32);padding:8px 0">Sin clientes registrados.</div>':clientes.map(cl=>`<div class="client-row"><span style="font-weight:600">${cl.nombre}</span><span class="client-num">${cl.numero}</span></div>`).join("")}${clientes.length>0?`<button class="btn-green" style="margin-top:13px" onclick="window.open('https://wa.me/${WA}?text=Hola!%20Soy%20Don%20Omar%20Rides%20🚗%20¿Listo%20para%20tu%20próximo%20viaje?','_blank')">Saludar a todos los clientes</button>`:''}</div></div>`;
 }
-
 function renderTabReseñas(c){
-  const pend=reseñas.filter(r=>!r.aprobada);
-  const apro=reseñas.filter(r=>r.aprobada);
-  c.innerHTML=`<div class="card"><div style="padding:12px 14px">
-    <span class="sec-title">PENDIENTES (${pend.length})</span>
-    ${pend.length===0?'<div style="text-align:center;color:rgba(200,220,240,0.32);padding:6px 0;margin-bottom:14px">Sin reseñas pendientes.</div>'
-    :pend.map(r=>`<div class="pend-card">
-      <div style="font-weight:700;margin-bottom:4px">${r.nombre}</div>
-      <div style="font-size:13px;color:rgba(220,230,240,0.7);margin-bottom:9px;line-height:1.5">${r.texto}</div>
-      <div style="display:flex;gap:8px">
-        <button class="btn-green" style="flex:1;padding:9px;font-size:12px" onclick="aprobarReseña(${r.id})">✓ Aprobar</button>
-        <button style="background:rgba(255,55,55,0.1);border:1px solid rgba(255,55,55,0.26);border-radius:10px;padding:9px;color:#ff5555;font-size:12px;cursor:pointer;flex:1" onclick="eliminarReseña(${r.id})">✕ Eliminar</button>
-      </div>
-    </div>`).join("")}
-    <span class="sec-title" style="margin-top:10px">PUBLICADAS (${apro.length})</span>
-    ${apro.map(r=>`<div style="padding:9px 0;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;justify-content:space-between;align-items:center">
-      <div><div style="font-weight:600;font-size:13px">${r.nombre}</div><div class="stars">★★★★★</div></div>
-      <button onclick="eliminarReseña(${r.id})" style="background:none;border:none;color:rgba(255,80,80,0.45);font-size:14px;cursor:pointer">✕</button>
-    </div>`).join("")}
-  </div></div>`;
+  const pend=reseñas.filter(r=>!r.aprobada);const apro=reseñas.filter(r=>r.aprobada);
+  c.innerHTML=`<div class="card"><div style="padding:12px 14px"><span class="sec-title">PENDIENTES (${pend.length})</span>${pend.length===0?'<div style="text-align:center;color:rgba(200,220,240,0.32);padding:6px 0;margin-bottom:14px">Sin reseñas pendientes.</div>':pend.map(r=>`<div class="pend-card"><div style="font-weight:700;margin-bottom:4px">${r.nombre}</div><div style="font-size:13px;color:rgba(220,230,240,0.7);margin-bottom:9px;line-height:1.5">${r.texto}</div><div style="display:flex;gap:8px"><button class="btn-green" style="flex:1;padding:9px;font-size:12px" onclick="aprobarReseña(${r.id})">✓ Aprobar</button><button style="background:rgba(255,55,55,0.1);border:1px solid rgba(255,55,55,0.26);border-radius:10px;padding:9px;color:#ff5555;font-size:12px;cursor:pointer;flex:1" onclick="eliminarReseña(${r.id})">✕ Eliminar</button></div></div>`).join("")}<span class="sec-title" style="margin-top:10px">PUBLICADAS (${apro.length})</span>${apro.map(r=>`<div style="padding:9px 0;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;justify-content:space-between;align-items:center"><div><div style="font-weight:600;font-size:13px">${r.nombre}</div><div class="stars">★★★★★</div></div><button onclick="eliminarReseña(${r.id})" style="background:none;border:none;color:rgba(255,80,80,0.45);font-size:14px;cursor:pointer">✕</button></div>`).join("")}</div></div>`;
 }
-
-function aprobarReseña(id){
-  reseñas=reseñas.map(r=>r.id===id?{...r,aprobada:true}:r);
-  save("dor_re",reseñas);
-  renderTab(); renderReseñas();
-}
-function eliminarReseña(id){
-  reseñas=reseñas.filter(r=>r.id!==id);
-  save("dor_re",reseñas);
-  renderTab(); renderReseñas();
-}
+function aprobarReseña(id){reseñas=reseñas.map(r=>r.id===id?{...r,aprobada:true}:r);save("dor_re",reseñas);renderTab();renderReseñas();}
+function eliminarReseña(id){reseñas=reseñas.filter(r=>r.id!==id);save("dor_re",reseñas);renderTab();renderReseñas();}
 
 function renderTabGaleria(c){
-  c.innerHTML=`<div class="card"><div style="padding:12px 14px">
-    <span class="sec-title">GESTIONAR GALERÍA</span>
-    <div class="gal-note">
-      <span style="color:#00d4d4;font-weight:700">Agregar más fotos:</span><br>
-      1. Ve a <span style="color:#c9a84c">imgbb.com</span> · sube la foto<br>
-      2. Copia el <span style="color:#c9a84c">"Direct link"</span><br>
-      3. Toca una celda vacía · pega el link · Guardar
-    </div>
-    <div class="gal-grid">
-      ${galeria.map((url,i)=>`
-        <div class="gal-cell" onclick="editGalCell(${i})" style="border-color:rgba(201,168,76,0.25)">
-          ${url
-            ? `<img src="${url}" alt="foto${i+1}" onerror="this.parentElement.innerHTML='<div class=gal-placeholder><div class=plus>📷</div><div>Foto ${i+1}</div></div>'"/>
-               <button onclick="event.stopPropagation();removeGalImg(${i})" style="position:absolute;top:4px;right:4px;background:rgba(0,0,0,0.75);border:none;border-radius:50%;width:22px;height:22px;color:#ff5555;font-size:12px;cursor:pointer">✕</button>`
-            : `<div class="gal-placeholder"><div class="plus">+</div><div>Foto ${i+1}</div></div>`
-          }
-        </div>`).join("")}
-    </div>
-    <div id="galEditBox" style="display:none;margin-top:12px;background:rgba(0,0,0,0.4);border:1px solid rgba(201,168,76,0.3);border-radius:12px;padding:14px">
-      <div style="font-size:12px;color:rgba(201,168,76,0.7);font-weight:700;margin-bottom:8px" id="galEditLabel">FOTO 1 — Link</div>
-      <input class="inp" id="galUrlInput" placeholder="https://i.ibb.co/ejemplo/foto.jpg" style="margin-bottom:10px;font-size:12px"/>
-      <div style="display:flex;gap:8px">
-        <button class="btn-green" style="flex:1;padding:10px;font-size:13px" onclick="saveGalUrl()">Guardar</button>
-        <button class="btn-cancel" onclick="closeGalEdit()">Cancelar</button>
-      </div>
-    </div>
-  </div></div>`;
+  c.innerHTML=`<div class="card"><div style="padding:12px 14px"><span class="sec-title">GESTIONAR GALERÍA</span><div class="gal-note"><span style="color:#00d4d4;font-weight:700">Agregar más fotos:</span><br>1. Ve a <span style="color:#c9a84c">imgbb.com</span> · sube la foto<br>2. Copia el <span style="color:#c9a84c">"Direct link"</span><br>3. Toca una celda vacía · pega el link · Guardar</div><div class="gal-grid">${galeria.map((url,i)=>`<div class="gal-cell" onclick="editGalCell(${i})" style="border-color:rgba(201,168,76,0.25)">${url?`<img src="${url}" alt="foto${i+1}" onerror="this.parentElement.innerHTML='<div class=gal-placeholder><div class=plus>📷</div><div>Foto ${i+1}</div></div>'"/><button onclick="event.stopPropagation();removeGalImg(${i})" style="position:absolute;top:4px;right:4px;background:rgba(0,0,0,0.75);border:none;border-radius:50%;width:22px;height:22px;color:#ff5555;font-size:12px;cursor:pointer">✕</button>`:`<div class="gal-placeholder"><div class="plus">+</div><div>Foto ${i+1}</div></div>`}</div>`).join("")}</div><div id="galEditBox" style="display:none;margin-top:12px;background:rgba(0,0,0,0.4);border:1px solid rgba(201,168,76,0.3);border-radius:12px;padding:14px"><div style="font-size:12px;color:rgba(201,168,76,0.7);font-weight:700;margin-bottom:8px" id="galEditLabel">FOTO 1 — Link</div><input class="inp" id="galUrlInput" placeholder="https://i.ibb.co/ejemplo/foto.jpg" style="margin-bottom:10px;font-size:12px"/><div style="display:flex;gap:8px"><button class="btn-green" style="flex:1;padding:10px;font-size:13px" onclick="saveGalUrl()">Guardar</button><button class="btn-cancel" onclick="closeGalEdit()">Cancelar</button></div></div></div></div>`;
 }
-
-let editingGalIdx = -1;
-function editGalCell(i){
-  editingGalIdx=i;
-  document.getElementById("galEditLabel").textContent=`FOTO ${i+1} — Pega el link`;
-  document.getElementById("galUrlInput").value=galeria[i]||"";
-  document.getElementById("galEditBox").style.display="block";
-  document.getElementById("galUrlInput").focus();
-}
-function saveGalUrl(){
-  const val=document.getElementById("galUrlInput").value.trim();
-  if(editingGalIdx<0) return;
-  galeria[editingGalIdx]=val||null;
-  save("dor_gal",galeria);
-  renderGaleria();
-  renderTab();
-  closeGalEdit();
-}
-function closeGalEdit(){ document.getElementById("galEditBox").style.display="none"; editingGalIdx=-1; }
-function removeGalImg(i){ galeria[i]=null; save("dor_gal",galeria); renderGaleria(); renderTab(); }
+let editingGalIdx=-1;
+function editGalCell(i){editingGalIdx=i;document.getElementById("galEditLabel").textContent=`FOTO ${i+1} — Pega el link`;document.getElementById("galUrlInput").value=galeria[i]||"";document.getElementById("galEditBox").style.display="block";document.getElementById("galUrlInput").focus();}
+function saveGalUrl(){const val=document.getElementById("galUrlInput").value.trim();if(editingGalIdx<0)return;galeria[editingGalIdx]=val||null;save("dor_gal",galeria);renderGaleria();renderTab();closeGalEdit();}
+function closeGalEdit(){document.getElementById("galEditBox").style.display="none";editingGalIdx=-1;}
+function removeGalImg(i){galeria[i]=null;save("dor_gal",galeria);renderGaleria();renderTab();}
 
 function renderTabCompartir(c){
   if(!shareUnlocked){
-    c.innerHTML=`<div class="card"><div style="padding:22px 18px">
-      <div style="font-size:15px;font-weight:700;color:#c9a84c;text-align:center;font-family:Georgia,serif;margin-bottom:4px">Compartir App</div>
-      <div style="text-align:center;color:rgba(200,220,240,0.42);font-size:12px;margin-bottom:18px">Confirma tu identidad</div>
-      <label class="lbl">Contraseña</label>
-      <input class="inp" type="password" id="sharePassInp" placeholder="••••••••" style="margin-bottom:6px" onkeydown="if(event.key==='Enter')checkSharePass()"/>
-      <div id="shareErr" style="color:#ff5555;font-size:12px;display:none;margin-bottom:6px">Contraseña incorrecta</div>
-      <div style="height:11px"></div>
-      <button class="btn-gold" onclick="checkSharePass()">Acceder</button>
-    </div></div>`;
-  } else {
-    c.innerHTML=`<div class="card"><div style="padding:20px 18px;text-align:center">
-      <div style="font-size:14px;font-weight:700;color:#c9a84c;font-family:Georgia,serif;margin-bottom:7px">DON OMAR RIDES</div>
-      <div style="color:rgba(200,220,240,0.62);font-size:13px;margin-bottom:16px;line-height:1.65">Envía el link por WhatsApp<br>a tus clientes.</div>
-      <button class="btn-green" onclick="window.open('https://wa.me/?text=🚗 Don Omar Rides — Transporte Privado%0A%0AAgenda tu viaje aquí 👇%0Ahttps://don-omar-rides.netlify.app','_blank')">📲 Enviar por WhatsApp</button>
-      <button class="btn-wa" onclick="window.open('https://wa.me/${WA}','_blank')">💬 Abrir WhatsApp directo</button>
-    </div></div>`;
+    c.innerHTML=`<div class="card"><div style="padding:22px 18px"><div style="font-size:15px;font-weight:700;color:#c9a84c;text-align:center;font-family:Georgia,serif;margin-bottom:4px">Compartir App</div><div style="text-align:center;color:rgba(200,220,240,0.42);font-size:12px;margin-bottom:18px">Confirma tu identidad</div><label class="lbl">Contraseña</label><input class="inp" type="password" id="sharePassInp" placeholder="••••••••" style="margin-bottom:6px" onkeydown="if(event.key==='Enter')checkSharePass()"/><div id="shareErr" style="color:#ff5555;font-size:12px;display:none;margin-bottom:6px">Contraseña incorrecta</div><div style="height:11px"></div><button class="btn-gold" onclick="checkSharePass()">Acceder</button></div></div>`;
+  }else{
+    c.innerHTML=`<div class="card"><div style="padding:20px 18px;text-align:center"><div style="font-size:14px;font-weight:700;color:#c9a84c;font-family:Georgia,serif;margin-bottom:7px">DON OMAR RIDES</div><div style="color:rgba(200,220,240,0.62);font-size:13px;margin-bottom:16px;line-height:1.65">Envía el link por WhatsApp<br>a tus clientes.</div><button class="btn-green" onclick="window.open('https://wa.me/?text=🚗 Don Omar Rides — Transporte Privado%0A%0AAgenda tu viaje aquí 👇%0Ahttps://omardejmejia.github.io/don-omar-rides','_blank')">📲 Enviar por WhatsApp</button><button class="btn-wa" style="margin-top:10px" onclick="window.open('https://wa.me/${WA}','_blank')">💬 Abrir WhatsApp directo</button></div></div>`;
   }
 }
-
-function checkSharePass(){
-  const v=(document.getElementById("sharePassInp")||{}).value;
-  if(v===PASS){ shareUnlocked=true; renderTab(); }
-  else { const e=document.getElementById("shareErr"); if(e) e.style.display="block"; }
-}
+function checkSharePass(){const v=(document.getElementById("sharePassInp")||{}).value;if(v===PASS){shareUnlocked=true;renderTab();}else{const e=document.getElementById("shareErr");if(e)e.style.display="block";}}
 </script>
 </body>
 </html>
