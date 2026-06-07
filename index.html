@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+  <title>Don Omar Rides</title>
+  <style>
+    body{background:linear-gradient(180deg,#06080d 0%,#090e18 55%,#07090f 100%);min-height:100vh;font-family:'Segoe UI',sans-serif;color:#fff;max-width:430px;margin:0 auto;}
+    input,textarea,select{font-family:inherit;}
+    .header{background:linear-gradient(180deg,#080a10,#0c1120);border-bottom:1px solid rgba(0,212,255,0.13);padding:22px 20px 16px;display:flex;flex-direction:column;align-items:center;}
+    .logo-container{width:100%;max-width:280px;margin-bottom:12px;cursor:pointer;}
+    .logo-img{width:100%;height:auto;display:block;border-radius:12px;box-shadow:0 0 30px rgba(0,212,255,0.3);transition:all 0.3s;}
+    .logo-container:hover .logo-img{box-shadow:0 0 40px rgba(0,212,255,0.5);transform:scale(1.02);}
+    .lang-selector{display:flex;gap:10px;margin-top:14px;background:rgba(0,212,255,0.1);padding:5px;border-radius:25px;border:1px solid rgba(0,212,255,0.25);}
+    .lang-btn{background:transparent;border:none;color:#888;padding:8px 18px;border-radius:20px;cursor:pointer;font-size:14px;font-weight:600;transition:all 0.3s;letter-spacing:0.5px;}
+    .lang-btn.active{background:#00d4ff;color:#000;box-shadow:0 0 15px rgba(0,212,255,0.5);}
+    .lang-btn:hover:not(.active){color:#00d4ff;}
+    .quick-row{display:flex;gap:9px;padding:13px;flex-wrap:wrap;}
+    .quick-btn{flex:1;min-width:140px;background:linear-gradient(135deg,rgba(0,212,255,0.1),rgba(0,212,255,0.05));border:1px solid rgba(0,212,255,0.2);padding:13px 11px;border-radius:12px;color:#fff;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:all 0.25s;}
+    .quick-btn:hover{transform:translateY(-2px);border-color:rgba(0,212,255,0.4);box-shadow:0 6px 18px rgba(0,212,255,0.15);}
+    .quick-btn-left{display:flex;align-items:center;gap:9px;}
+    .quick-btn .icon{font-size:19px;}
+    .quick-btn .label{font-size:13px;letter-spacing:1px;color:#00d4ff;text-shadow:0 0 8px rgba(0,212,255,0.6);}
+    .quick-chev{font-size:12px;opacity:0.7;transition:transform 0.3s;}
+    .card{background:linear-gradient(135deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.06);border-radius:16px;margin:11px 13px 17px;overflow:hidden;transition:all 0.3s;}
+    .card.active{border-color:rgba(0,212,255,0.25);box-shadow:0 8px 28px rgba(0,0,0,0.35);}
+    .card-header{display:flex;align-items:center;gap:13px;padding:16px 15px;cursor:pointer;background:linear-gradient(135deg,rgba(0,212,255,0.08),transparent);transition:all 0.3s;}
+    .card-header:hover{background:linear-gradient(135deg,rgba(0,212,255,0.15),rgba(0,212,255,0.05));}
+    .card-icon{font-size:26px;}
+    .card-title{font-size:16px;font-weight:700;letter-spacing:1px;margin-bottom:3px;color:#00d4ff;text-shadow:0 0 10px rgba(0,212,255,0.6);}
+    .card-sub{font-size:12px;color:#fff;letter-spacing:1px;text-shadow:0 0 5px rgba(255,255,255,0.4);}
+    .card-chev{margin-left:auto;font-size:14px;opacity:0.7;transition:transform 0.3s;}
+    .card-body{max-height:0;overflow:hidden;transition:all 0.4s cubic-bezier(0,1,0,1);padding:0 15px;}
+    .card-body.open{max-height:3000px;padding:0 15px 16px;transition:all 0.5s cubic-bezier(1,0,0,1);}
+    .card-body.open.internal{padding-top:14px;}
+    .lbl{display:block;font-size:12px;color:#00d4ff;margin-bottom:6px;letter-spacing:1px;text-shadow:0 0 8px rgba(0,212,255,0.5);}
+    .inp{width:100%;box-sizing:border-box;background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,255,0.08);border-radius:9px;padding:11px 12px;color:#fff;font-size:14px;outline:none;transition:all 0.25s;text-shadow:0 0 5px rgba(255,255,255,0.3);}
+    .inp:focus{border-color:#00d4ff;box-shadow:0 0 0 3px rgba(0,212,255,0.12);}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:13px;}
+    .route-wrap{display:flex;align-items:center;gap:9px;margin-bottom:11px;}
+    .route-dot{width:11px;height:11px;border-radius:50%;flex-shrink:0;box-shadow:0 0 10px currentColor;}
+    .route-inp{flex:1;margin-bottom:0;}
+    .btn-gold{width:100%;background:linear-gradient(135deg,#00d4ff,#0099cc);border:none;border-radius:9px;padding:13px;color:#000;font-size:15px;font-weight:700;cursor:pointer;transition:all 0.3s;letter-spacing:1px;margin-top:6px;box-shadow:0 0 15px rgba(0,212,255,0.4);}
+    .btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,212,255,0.6);}
+    .btn-gold-sm{width:100%;background:rgba(0,212,255,0.15);border:1px solid rgba(0,212,255,0.3);border-radius:7px;padding:8px;color:#00d4ff;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.3s;margin-top:8px;}
+    .btn-gold-sm:hover{background:rgba(0,212,255,0.25);}
+    .ok{background:rgba(26,219,122,0.12);border:1px solid rgba(26,219,122,0.35);color:#1adb7a;padding:12px;border-radius:9px;text-align:center;margin-bottom:13px;font-size:13px;}
+    .gal-sub{text-align:center;color:#00d4ff;font-size:13px;margin-bottom:13px;letter-spacing:2px;text-shadow:0 0 10px rgba(0,212,255,0.6);}
+    .gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;}
+    .gal-item{aspect-ratio:1;object-fit:cover;border-radius:7px;cursor:pointer;border:2px solid transparent;transition:all 0.25s;}
+    .gal-item:hover{transform:scale(1.05);border-color:#00d4ff;}
+    .reseña-item{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:11px;padding:12px;margin-bottom:10px;}
+    .reseña-nombre{font-weight:700;color:#00d4ff;margin-bottom:5px;font-size:14px;text-shadow:0 0 8px rgba(0,212,255,0.6);}
+    .reseña-texto{font-size:13px;color:#fff;line-height:1.5;text-shadow:0 0 5px rgba(255,255,255,0.3);}
+    .valoramos{text-align:center;color:#00d4ff;font-size:13px;margin-bottom:12px;letter-spacing:2px;text-shadow:0 0 10px rgba(0,212,255,0.6);}
+    .img-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.95);display:flex;align-items:center;justify-content:center;z-index:10000;padding:20px;box-sizing:border-box;}
+    .img-overlay img{max-width:100%;max-height:100%;object-fit:contain;border-radius:8px;}
+    .modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:10001;padding:20px;}
+    .modal-box{background:linear-gradient(135deg,#1a1f2e,#0f1420);border:1px solid rgba(0,212,255,0.3);border-radius:16px;padding:26px;max-width:320px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,0.5);}
+    .modal-title{font-size:21px;font-weight:700;text-align:center;margin-bottom:5px;letter-spacing:1px;color:#00d4ff;text-shadow:0 0 15px rgba(0,212,255,0.8);}
+    .modal-sub{text-align:center;color:#fff;font-size:13px;margin-bottom:17px;text-shadow:0 0 5px rgba(255,255,255,0.4);}
+    .modal-cancel{width:100%;background:transparent;border:1px solid rgba(255,255,255,0.15);border-radius:9px;padding:11px;color:#fff;margin-top:9px;cursor:pointer;font-size:14px;transition:all 0.25s;}
+    .modal-cancel:hover{background:rgba(255,255,255,0.06);}
+    .admin-wrap{padding:13px;}
+    .admin-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px;padding:11px;background:rgba(0,212,255,0.08);border-radius:10px;border:1px solid rgba(0,212,255,0.2);}
+    .admin-title{font-size:17px;font-weight:700;color:#00d4ff;letter-spacing:1px;text-shadow:0 0 10px rgba(0,212,255,0.6);}
+    .btn-sm-red{background:linear-gradient(135deg,#ff4757,#ff3838);border:none;border-radius:7px;padding:7px 13px;color:#fff;font-size:12px;cursor:pointer;font-weight:600;}
+    .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:13px;}
+    .stat-box{background:linear-gradient(135deg,rgba(0,212,255,0.12),rgba(0,212,255,0.05));border:1px solid rgba(0,212,255,0.2);border-radius:10px;padding:12px;text-align:center;}
+    .stat-n{font-size:24px;font-weight:700;color:#00d4ff;margin-bottom:4px;text-shadow:0 0 10px rgba(0,212,255,0.6);}
+    .stat-l{font-size:11px;color:#fff;letter-spacing:1px;text-shadow:0 0 5px rgba(255,255,255,0.3);}
+    .tab-row{display:flex;gap:6px;margin-bottom:13px;flex-wrap:wrap;}
+    .tab-btn{flex:1;min-width:80px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:9px 6px;color:#fff;font-size:11px;cursor:pointer;transition:all 0.25s;}
+    .tab-btn.active{background:rgba(0,212,255,0.2);border-color:#00d4ff;color:#00d4ff;text-shadow:0 0 8px rgba(0,212,255,0.6);}
+    .tab-item{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:11px;margin-bottom:9px;}
+    .tab-item-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+    .tab-item-title{font-weight:600;font-size:13px;color:#00d4ff;text-shadow:0 0 8px rgba(0,212,255,0.6);}
+    .tab-item-sub{font-size:12px;color:#fff;margin-top:3px;text-shadow:0 0 5px rgba(255,255,255,0.3);}
+    .btn-sm{background:rgba(0,212,255,0.15);border:1px solid rgba(0,212,255,0.3);border-radius:6px;padding:5px 9px;color:#00d4ff;font-size:11px;cursor:pointer;margin-left:6px;transition:all 0.2s;}
+    .btn-sm:hover{background:rgba(0,212,255,0.25);}
+    .btn-sm-danger{background:rgba(255,71,87,0.15);border:1px solid rgba(255,71,87,0.3);color:#ff4757;}
+    .btn-sm-danger:hover{background:rgba(255,71,87,0.25);}
+    .compartir-box{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:13px;margin-bottom:9px;}
+    .compartir-titulo{font-weight:600;color:#00d4ff;margin-bottom:8px;font-size:13px;text-shadow:0 0 8px rgba(0,212,255,0.6);}
+    .compartir-url{background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,255,0.1);border-radius:7px;padding:9px;font-size:12px;color:#1adb7a;word-break:break-all;margin-bottom:8px;}
+    .btn-copy{background:rgba(26,219,122,0.15);border:1px solid rgba(26,219,122,0.35);color:#1adb7a;padding:7px 11px;border-radius:6px;cursor:pointer;font-size:12px;width:100%;transition:all 0.2s;}
+    .btn-copy:hover{background:rgba(26,219,122,0.25);}
+    .footer{background:linear-gradient(180deg,transparent,rgba(0,0,0,0.5));padding:20px 15px;text-align:center;border-top:1px solid rgba(0,212,255,0.15);margin-top:20px;}
+    .footer-line1{font-size:13px;color:#00d4ff;letter-spacing:1px;margin-bottom:5px;text-shadow:0 0 10px rgba(0,212,255,0.6);}
+    .footer-line2{font-size:11px;color:#fff;letter-spacing:0.5px;margin-bottom:3px;text-shadow:0 0 5px rgba(255,255,255,0.3);}
+    .footer-line3{font-size:10px;color:#888;letter-spacing:0.5px;}
+    .max-people{display:inline-block;background:rgba(255,165,0,0.15);border:1px solid rgba(255,165,0,0.3);border-radius:6px;padding:4px 10px;font-size:11px;color:#ffa500;font-weight:600;margin-bottom:13px;text-shadow:0 0 5px rgba(255,165,0,0.4);}
+    .mun-item{background:rgba(0,0,0,0.2);border:1px solid rgba(0,212,255,0.15);border-radius:10px;padding:12px;margin-bottom:10px;transition:all 0.2s;}
+    .mun-item:hover{border-color:rgba(0,212,255,0.4);background:rgba(0,212,255,0.05);}
+    .mun-name{font-size:15px;font-weight:700;color:#00d4ff;margin-bottom:6px;text-shadow:0 0 8px rgba(0,212,255,0.5);}
+    .mun-details{display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:12px;color:#fff;margin-bottom:8px;}
+    .mun-detail-label{color:#888;font-size:11px;}
+    .mun-detail-value{color:#fff;font-weight:600;text-shadow:0 0 4px rgba(255,255,255,0.3);}
+    .mun-route{font-size:11px;color:#aaa;font-style:italic;margin-bottom:8px;border-top:1px solid rgba(255,255,255,0.05);padding-top:6px;}
+    .mun-list-container{max-height:400px;overflow-y:auto;padding-right:5px;}
+    .mun-list-container::-webkit-scrollbar{width:6px;}
+    .mun-list-container::-webkit-scrollbar-track{background:rgba(0,0,0,0.2);border-radius:3px;}
+    .mun-list-container::-webkit-scrollbar-thumb{background:rgba(0,212,255,0.3);border-radius:3px;}
+    .mun-list-container::-webkit-scrollbar-thumb:hover{background:rgba(0,212,255,0.5);}
+    .spotify-section{padding:13px;}
+    .spotify-btn{display:flex;align-items:center;gap:11px;background:linear-gradient(135deg,rgba(30,215,96,0.12),rgba(30,215,96,0.05));border:1px solid rgba(30,215,96,0.25);padding:11px 15px;border-radius:13px;cursor:pointer;transition:all 0.3s;width:100%;justify-content:center;box-sizing:border-box;}
+    .spotify-btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,215,96,0.25);border-color:rgba(30,215,96,0.45);}
+    .spotify-btn span{font-size:13px;color:#e8d5a3;letter-spacing:1px;}
+  </style>
+</head>
+<body>
+  <div class="img-overlay" id="imgModal" style="display:none" onclick="closeImgModal()">
+    <img id="imgModalSrc" src="" alt="foto"/>
+  </div>
+  
+  <div class="modal-overlay" id="passModal" style="display:none">
+    <div class="modal-box">
+      <div class="modal-title" data-i18n="adminPanel">Panel Administrador</div>
+      <div class="modal-sub" data-i18n="exclusiveAccess">Acceso exclusivo Don Omar</div>
+      <label class="lbl" data-i18n="password">Contraseña</label>
+      <input class="inp" type="password" id="passInput" placeholder="••••••••" style="margin-bottom:6px" onkeydown="if(event.key==='Enter')doLogin()"/>
+      <div id="passError" style="color:#ff5555;font-size:12px;margin-bottom:9px;display:none" data-i18n="wrongPass">Contraseña incorrecta</div>
+      <div style="height:11px"></div>
+      <button class="btn-gold" onclick="doLogin()" data-i18n="enterPanel">Entrar al Panel</button>
+      <button class="modal-cancel" onclick="closePassModal()" data-i18n="cancel">Cancelar</button>
+    </div>
+  </div>
+  
+  <div id="appHome">
+    <div class="header">
+      <!-- ✅ LOGO CON ACCESO ADMIN - TRIPLE CLICK O DOBLE CLICK -->
+      <div class="logo-container" id="logoAdmin" onclick="logoClick()" ondblclick="logoDblClick()">
+        <img src="https://i.postimg.cc/yNhv7TNv/IMG-3776.jpg" alt="Don Omar Rides" class="logo-img" onerror="this.src='https://via.placeholder.com/280x120/000000/00d4ff?text=DON+OMAR+RIDES'"/>
+      </div>
+      
+      <div class="lang-selector">
+        <button class="lang-btn active" id="btnES" onclick="setLanguage('es')">Español</button>
+        <button class="lang-btn" id="btnEN" onclick="setLanguage('en')">English</button>
+      </div>
+    </div>
+    
+    <div class="quick-row">
+      <button class="quick-btn" id="btnGal" onclick="toggleSection('gal')">
+        <div class="quick-btn-left"><span class="icon">📸</span><span class="label" data-i18n="gallery">Galería</span></div>
+        <span class="quick-chev" id="chevGal">▼</span>
+      </button>
+      <button class="quick-btn" id="btnRese" onclick="toggleSection('rese')">
+        <div class="quick-btn-left"><span class="icon">⭐</span><span class="label" data-i18n="reviews">Reseñas</span></div>
+        <span class="quick-chev" id="chevRese">▼</span>
+      </button>
+    </div>
+    
+    <div class="card active" id="secGal" style="display:none">
+      <div class="card-body open">
+        <div class="gal-sub" data-i18n="gallerySubtitle">Nuestros viajes · Nuestros recuerdos</div>
+        <div class="gal-grid" id="galeriaGrid"></div>
+      </div>
+    </div>
+    
+    <div class="card active" id="secRese" style="display:none">
+      <div class="card-body open">
+        <div id="reseñasList"></div>
+        <div style="margin-top:18px;padding-top:15px;border-top:1px solid rgba(0,212,255,0.18)">
+          <div class="valoramos" data-i18n="weValueOpinion">✦ Valoramos tu opinión ✦</div>
+          <div id="reseñaOk" class="ok" style="display:none" data-i18n="reviewThanks">✅ ¡Gracias! Tu reseña será revisada y publicada pronto.</div>
+          <div id="reseñaForm">
+            <input class="inp" id="reseñaNombre" placeholder="Tu nombre" style="margin-bottom:9px" data-i18n-ph="yourName"/>
+            <textarea class="inp" id="reseñaTexto" placeholder="Cuéntanos cómo fue tu viaje con Don Omar Rides..." style="min-height:82px;resize:vertical;margin-bottom:12px;font-family:inherit" data-i18n-ph="reviewPlaceholder"></textarea>
+            <button class="btn-gold" onclick="enviarReseña()" data-i18n="sendReview">Enviar Reseña</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="card" id="cardRes">
+      <div class="card-header" onclick="toggleCard('res')">
+        <div class="card-icon">📅</div>
+        <div>
+          <div class="card-title" data-i18n="newBooking">Nueva Reserva</div>
+          <div class="card-sub" data-i18n="scheduleTrip">Agenda tu viaje</div>
+        </div>
+        <div class="card-chev" id="chevRes">▼</div>
+      </div>
+      <div class="card-body" id="bodyRes">
+        <div id="reservaOk" class="ok" style="display:none" data-i18n="bookingConfirmed">✅ ¡Reserva confirmada! Pronto te contactamos.</div>
+        <div class="two-col">
+          <div><label class="lbl" data-i18n="name">Nombre</label><input class="inp" id="fNombre" placeholder="Tu nombre" data-i18n-ph="yourName"/></div>
+          <div><label class="lbl" data-i18n="phone">Número</label><input class="inp" id="fNumero" placeholder="Celular" data-i18n-ph="yourPhone"/></div>
+        </div>
+        <label class="lbl" data-i18n="route">Ruta</label>
+        <div class="route-wrap">
+          <div class="route-dot" style="background:#1adb7a"></div>
+          <input class="inp route-inp" id="fRecogida" placeholder="Dirección de recogida" data-i18n-ph="pickupAddress"/>
+        </div>
+        <div class="route-wrap" style="margin-bottom:13px">
+          <div class="route-dot" style="background:#00d4ff"></div>
+          <input class="inp route-inp" id="fDestino" placeholder="Dirección de destino" data-i18n-ph="destinationAddress"/>
+        </div>
+        <label class="lbl" data-i18n="date">Fecha</label>
+        <input class="inp" type="date" id="fFecha" style="margin-bottom:11px;color-scheme:dark"/>
+        <label class="lbl" data-i18n="time">Horario</label>
+        <select class="inp" id="fHorario" style="margin-bottom:14px">
+          <option value="" data-i18n="selectTime">Seleccionar horario</option>
+        </select>
+        <button class="btn-gold" onclick="confirmarReserva()" data-i18n="confirmBooking">Confirmar Reserva</button>
+      </div>
+    </div>
+    
+    <div class="card" id="cardAntioquia">
+      <div class="card-header" onclick="toggleCard('antioquia')">
+        <div class="card-icon">🗺️</div>
+        <div>
+          <div class="card-title" data-i18n="exploreAntioquia">Explora Antioquia</div>
+          <div class="card-sub" data-i18n="allMunicipalities">Todos los municipios</div>
+        </div>
+        <div class="card-chev" id="chevAntioquia">▼</div>
+      </div>
+      <div class="card-body" id="bodyAntioquia">
+        <div style="text-align:center;margin-bottom:13px">
+          <span class="max-people" data-i18n="maxPeople">👥 Máximo 3 personas</span>
+        </div>
+        <button class="btn-gold" onclick="toggleMunicipiosList()" id="btnVerMunicipios" data-i18n="viewList">Ver Listado de Municipios y Tarifas</button>
+        
+        <div id="municipiosListContainer" style="display:none; margin-top:15px;">
+          <div style="background:rgba(255,165,0,0.1); border:1px solid rgba(255,165,0,0.3); border-radius:8px; padding:10px; margin-bottom:12px; font-size:12px; color:#ffa500; text-align:center; text-shadow:0 0 5px rgba(255,165,0,0.3);" data-i18n="noteOneWay">
+            ⚠️ Nota: Los valores son solo para un recorrido (ida). Para espera y regreso, coordinar con el conductor.
+          </div>
+          <input class="inp" id="searchMun" placeholder="Buscar municipio..." onkeyup="filterMunicipios()" style="margin-bottom:12px;" data-i18n-ph="searchMunicipality"/>
+          <div class="mun-list-container" id="municipiosGrid"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="card" id="cardServ">
+      <div class="card-header" onclick="toggleCard('serv')">
+        <div class="card-icon">✨</div>
+        <div>
+          <div class="card-title" data-i18n="services">Servicios</div>
+        </div>
+        <div class="card-chev" id="chevServ">▼</div>
+      </div>
+      <div class="card-body" id="bodyServ">
+        <div class="tab-item">
+          <div class="tab-item-title" data-i18n="service1Title">🚗 Transporte Aeropuerto</div>
+          <div class="tab-item-sub" data-i18n="service1Desc">Recogidas y llevadas al aeropuerto José María Córdova con puntualidad garantizada.</div>
+          <div style="margin-top:10px; font-size:13px; color:#fff; line-height:1.7; padding-left:5px;">
+            <div>☀️ <span data-i18n="priceDay">Día:</span> <strong style="color:#00d4ff; text-shadow:0 0 8px rgba(0,212,255,0.5);">$130.000 COP</strong></div>
+            <div>🌙 <span data-i18n="priceNight">Noche:</span> <strong style="color:#00d4ff; text-shadow:0 0 8px rgba(0,212,255,0.5);">$170.000 COP</strong></div>
+            <div>🔄 <span data-i18n="priceRound">Ida y regreso (con espera):</span> <strong style="color:#00d4ff; text-shadow:0 0 8px rgba(0,212,255,0.5);">$250.000 COP</strong></div>
+          </div>
+        </div>
+        <div class="tab-item">
+          <div class="tab-item-title" data-i18n="service2Title">🏞️ Tours Personalizados</div>
+          <div class="tab-item-sub" data-i18n="service2Desc">Visita Guatapé, Jardín, Santa Fe de Antioquia y más a tu ritmo. Máximo 3 personas.</div>
+        </div>
+        <div class="tab-item">
+          <div class="tab-item-title" data-i18n="service3Title">💼 Servicio Ejecutivo</div>
+          <div class="tab-item-sub" data-i18n="service3Desc">Traslados empresariales y reuniones con la mejor disposición.</div>
+          <div class="price-tag" data-i18n="priceHour">$35,000 COP / hora</div>
+        </div>
+        <div class="tab-item">
+          <div class="tab-item-title" data-i18n="service4Title">🎉 Eventos Especiales</div>
+          <div class="tab-item-sub" data-i18n="service4Desc">Bodas, celebraciones y planes nocturnos con total seguridad.</div>
+          <div class="price-tag" data-i18n="priceHour">$35,000 COP / hora</div>
+        </div>
+        
+        <!-- ✅ BOTÓN SPOTIFY MOVIDO AQUÍ - DESPUÉS DE SERVICIOS -->
+        <div class="spotify-section">
+          <button class="spotify-btn" onclick="window.open('https://linktr.ee/omardejmejia','_blank')">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="#1ED760" style="filter:drop-shadow(0 0 8px rgba(30,215,96,0.6))">
+              <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.516 17.312a.75.75 0 01-1.032.25c-2.827-1.727-6.39-2.118-10.583-1.16a.75.75 0 01-.334-1.463c4.588-1.048 8.523-.597 11.7 1.341a.75.75 0 01.249 1.032zm1.472-3.273a.938.938 0 01-1.29.308c-3.234-1.988-8.163-2.563-11.99-1.403a.937.937 0 01-.543-1.794c4.37-1.325 9.8-.683 13.514 1.6a.938.938 0 01.309 1.289zm.127-3.407C15.3 8.39 8.97 8.18 5.5 9.215a1.125 1.125 0 01-.651-2.152c4.01-1.215 10.68-.98 14.893 1.57a1.125 1.125 0 01-1.127 1.999z"/>
+            </svg>
+            <span data-i18n="playlist">Aquí tu playlist de viaje</span>
+          </button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+  <div id="appAdmin" style="display:none">
+    <div class="admin-wrap">
+      <div class="admin-top">
+        <div class="admin-title" data-i18n="adminPanel">Panel Admin</div>
+        <button class="btn-sm-red" onclick="salirAdmin()" data-i18n="logout">Salir</button>
+      </div>
+      <div class="stat-row">
+        <div class="stat-box"><div class="stat-n" id="statRes">0</div><div class="stat-l" data-i18n="bookings">Reservas</div></div>
+        <div class="stat-box"><div class="stat-n" id="statCli">0</div><div class="stat-l" data-i18n="clients">Clientes</div></div>
+        <div class="stat-box"><div class="stat-n" id="statRev">0</div><div class="stat-l" data-i18n="reviews">Reseñas</div></div>
+      </div>
+      <div class="tab-row">
+        <button class="tab-btn active" onclick="setTab('reservas',this)" data-i18n="tabBookings">📅 Reservas</button>
+        <button class="tab-btn" onclick="setTab('horarios',this)" data-i18n="tabSchedules">⏰ Horarios</button>
+        <button class="tab-btn" onclick="setTab('clientes',this)" data-i18n="tabClients">👥 Clientes</button>
+        <button class="tab-btn" onclick="setTab('reseñas',this)" data-i18n="tabReviews">⭐ Reseñas</button>
+        <button class="tab-btn" onclick="setTab('galeria',this)" data-i18n="tabGallery">📸 Galería</button>
+        <button class="tab-btn" onclick="setTab('compartir',this)" data-i18n="tabShare">💬 Compartir</button>
+      </div>
+      <div id="tabContent"></div>
+    </div>
+  </div>
+  
+  <div class="footer">
+    <div class="footer-line1">DonOmarRides, transporte privado</div>
+    <div class="footer-line2">Design OMARDEJMEJIA 2026</div>
+    <div class="footer-line3" data-i18n="allRights">Todos los derechos reservados</div>
+  </div>
+
+  <script>
+    const translations = {
+      es: {
+        adminPanel: "Panel Administrador", exclusiveAccess: "Acceso exclusivo Don Omar", password: "Contraseña", wrongPass: "Contraseña incorrecta", enterPanel: "Entrar al Panel", cancel: "Cancelar", playlist: "Aquí tu playlist de viaje", gallery: "Galería", reviews: "Reseñas", gallerySubtitle: "Nuestros viajes · Nuestros recuerdos", weValueOpinion: "✦ Valoramos tu opinión ✦", reviewThanks: "✅ ¡Gracias! Tu reseña será revisada y publicada pronto.", yourName: "Tu nombre", yourPhone: "Celular", reviewPlaceholder: "Cuéntanos cómo fue tu viaje con Don Omar Rides...", sendReview: "Enviar Reseña", newBooking: "Nueva Reserva", scheduleTrip: "Agenda tu viaje", bookingConfirmed: "✅ ¡Reserva confirmada! Pronto te contactamos.", name: "Nombre", phone: "Número", route: "Ruta", pickupAddress: "Dirección de recogida", destinationAddress: "Dirección de destino", date: "Fecha", time: "Horario", selectTime: "Seleccionar horario", confirmBooking: "Confirmar Reserva", exploreAntioquia: "Explora Antioquia", allMunicipalities: "Todos los municipios", viewList: "Ver Listado de Municipios y Tarifas", searchMunicipality: "Buscar municipio...", noteOneWay: "⚠️ Nota: Los valores son solo para un recorrido (ida). Para espera y regreso, coordinar con el conductor.", services: "Servicios", service1Title: "🚗 Transporte Aeropuerto", service1Desc: "Recogidas y llevadas al aeropuerto José María Córdova con puntualidad garantizada.", service2Title: "🏞️ Tours Personalizados", service2Desc: "Visita Guatapé, Jardín, Santa Fe de Antioquia y más a tu ritmo. Máximo 3 personas.", service3Title: "💼 Servicio Ejecutivo", service3Desc: "Traslados empresariales y reuniones con la mejor disposición.", service4Title: "🎉 Eventos Especiales", service4Desc: "Bodas, celebraciones y planes nocturnos con total seguridad.", priceHour: "$35,000 COP / hora", priceDay: "Día:", priceNight: "Noche:", priceRound: "Ida y regreso (con espera):", maxPeople: "👥 Máximo 3 personas", logout: "Salir", bookings: "Reservas", clients: "Clientes", tabBookings: "📅 Reservas", tabSchedules: "⏰ Horarios", tabClients: "👥 Clientes", tabReviews: "⭐ Reseñas", tabGallery: "📸 Galería", tabShare: "💬 Compartir", noBookings: "No hay reservas aún", noClients: "No hay clientes registrados", noReviews: "No hay reseñas", delete: "Eliminar", edit: "Editar", newReviewName: "Nuevo nombre:", newReviewText: "Nuevo texto de la reseña:", blockedTimes: "Horarios bloqueados", copyLink: "Copiar Enlace", copied: "¡Copiado!", shareWhatsApp: "Compartir por WhatsApp", shareText: "Mira mis servicios de transporte privado en Medellín", addImage: "Agregar Imagen", imageUrl: "URL de la imagen:", add: "Agregar", allRights: "Todos los derechos reservados", bookNow: "Reservar", price: "Precio", distance: "Distancia", time: "Tiempo", routeInfo: "Ruta"
+      },
+      en: {
+        adminPanel: "Admin Panel", exclusiveAccess: "Don Omar Exclusive Access", password: "Password", wrongPass: "Incorrect password", enterPanel: "Enter Panel", cancel: "Cancel", playlist: "Your travel playlist here", gallery: "Gallery", reviews: "Reviews", gallerySubtitle: "Our trips · Our memories", weValueOpinion: "✦ We value your opinion ✦", reviewThanks: "✅ Thank you! Your review will be reviewed and published soon.", yourName: "Your name", yourPhone: "Phone number", reviewPlaceholder: "Tell us how was your trip with Don Omar Rides...", sendReview: "Send Review", newBooking: "New Booking", scheduleTrip: "Schedule your trip", bookingConfirmed: "✅ Booking confirmed! We'll contact you soon.", name: "Name", phone: "Phone", route: "Route", pickupAddress: "Pickup address", destinationAddress: "Destination address", date: "Date", time: "Time", selectTime: "Select time", confirmBooking: "Confirm Booking", exploreAntioquia: "Explore Antioquia", allMunicipalities: "All municipalities", viewList: "View Municipalities and Rates List", searchMunicipality: "Search municipality...", noteOneWay: "⚠️ Note: Rates are for a one-way trip only. For waiting and return, please coordinate with the driver.", services: "Services", service1Title: "🚗 Airport Transportation", service1Desc: "Pickups and drop-offs at José María Córdova airport with guaranteed punctuality.", service2Title: "🏞️ Customized Tours", service2Desc: "Visit Guatapé, Jardín, Santa Fe de Antioquia and more at your own pace. Maximum 3 people.", service3Title: "💼 Executive Service", service3Desc: "Business transfers and meetings with the best service.", service4Title: "🎉 Special Events", service4Desc: "Weddings, celebrations and nightlife with total safety.", priceHour: "$35,000 COP / hour", priceDay: "Day:", priceNight: "Night:", priceRound: "Round trip (with wait):", maxPeople: "👥 Maximum 3 people", logout: "Logout", bookings: "Bookings", clients: "Clients", tabBookings: "📅 Bookings", tabSchedules: "⏰ Schedules", tabClients: "👥 Clients", tabReviews: "⭐ Reviews", tabGallery: "📸 Gallery", tabShare: "💬 Share", noBookings: "No bookings yet", noClients: "No registered clients", noReviews: "No reviews", delete: "Delete", edit: "Edit", newReviewName: "New name:", newReviewText: "New review text:", blockedTimes: "Blocked times", copyLink: "Copy Link", copied: "Copied!", shareWhatsApp: "Share via WhatsApp", shareText: "Check out my private transportation services in Medellín", addImage: "Add Image", imageUrl: "Image URL:", add: "Add", allRights: "All rights reserved", bookNow: "Book Now", price: "Price", distance: "Distance", time: "Time", routeInfo: "Route"
+      }
+    };
+
+    let currentLang = localStorage.getItem('donOmarLang') || 'es';
+    let logoClickCount = 0;
+    let logoClickTimer = null;
+
+    // ✅ FUNCIONES PARA ACCESO ADMIN DESDE EL LOGO
+    function logoClick() {
+      logoClickCount++;
+      if(logoClickTimer) clearTimeout(logoClickTimer);
+      if(logoClickCount >= 3) {
+        logoClickCount = 0;
+        openPassModal();
+      } else {
+        logoClickTimer = setTimeout(() => logoClickCount = 0, 2500);
+      }
+    }
+
+    function logoDblClick() {
+      openPassModal();
+    }
+
+    function setLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem('donOmarLang', lang);
+      document.documentElement.lang = lang;
+      document.getElementById('btnES').classList.toggle('active', lang === 'es');
+      document.getElementById('btnEN').classList.toggle('active', lang === 'en');
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) el.textContent = translations[lang][key];
+      });
+      document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+        const key = el.getAttribute('data-i18n-ph');
+        if (translations[lang][key]) el.placeholder = translations[lang][key];
+      });
+      if (typeof renderReseñas === 'function') renderReseñas();
+      if (typeof renderGaleria === 'function') renderGaleria();
+      if (typeof updateStats === 'function') updateStats();
+      if (typeof renderTabContent === 'function') renderTabContent();
+      if (typeof renderMunicipiosList === 'function') renderMunicipiosList();
+    }
+
+    window.addEventListener('load', () => { setLanguage(currentLang); });
+
+    const MUNICIPIOS_DATA = [
+      {n:"Abejorral",p:"$400.000",d:"91,9 Km",t:"2H 24 min",r:"por la Ceja Oriente"},
+      {n:"Abriaquí",p:"$630.000",d:"136 Km",t:"3H 35 min",r:"Occidente"},
+      {n:"Albania",p:"$180.000",d:"50,4 Km",t:"1H 22 min",r:"Por Autopista conexion pacifico 1"},
+      {n:"Alejandría",p:"$225.000",d:"79,7 Km",t:"2H 32 min",r:"Barbosa – Concepción"},
+      {n:"Amagá",p:"$120.000",d:"38,9 Km",t:"53 min",r:"Amagá – Caldas"},
+      {n:"Amalfi",p:"$350.000",d:"144 Km",t:"2H 54 min",r:"Barbosa – Pto. Berrio"},
+      {n:"Andes",p:"$445.000",d:"124 Km",t:"3H 15 min",r:"Carretera 60"},
+      {n:"Angelópolis",p:"$130.000",d:"38,1 Km",t:"1 Hora",r:"Angelopolis – Caldas"},
+      {n:"Angostura",p:"$420.000",d:"124 Km",t:"2H 48 min",r:"Angostura – Carolina"},
+      {n:"Anorí",p:"$490.000",d:"176 Km",t:"3H 55 min",r:"Barbosa – Pto. Berrio"},
+      {n:"Anzá",p:"$340.000",d:"81,6 Km",t:"1H 40 min",r:"Via Occidente y Bolombolo"},
+      {n:"Apartadó",p:"$1.200.000",d:"311 Km",t:"6H 24 min",r:"Occidente"},
+      {n:"Arboletes",p:"$1.330.000",d:"456 Km",t:"8H 45 min",r:"Occidente"},
+      {n:"Argelia",p:"$560.000",d:"144 Km",t:"3H 43 min",r:"Via las palmas"},
+      {n:"Armenia (Mant.)",p:"$210.000",d:"50,5 Km",t:"1H 42 min",r:"San Antonio de Prado – Heliconia"},
+      {n:"Barbosa",p:"Por taxímetro",d:"42,7 Km",t:"44 min",r:"Autopista Norte"},
+      {n:"Bello",p:"Por taxímetro",d:"11,5 Km",t:"23 min",r:"Autopista Norte"},
+      {n:"Belmira",p:"$220.000",d:"59,7 Km",t:"1H 28 min",r:"Medellín – San Pedro"},
+      {n:"Betania",p:"$420.000",d:"116 Km",t:"2H 3 min",r:"Carretera 60"},
+      {n:"Betulia",p:"$423.000",d:"119 Km",t:"2H 59 min",r:"Concordia – Betulia"},
+      {n:"Bolombolo",p:"$240.000",d:"63,1 Km",t:"1H 25 min",r:"Carretera 60"},
+      {n:"Briceño",p:"$550.000",d:"177 Km",t:"4H 32 min",r:"Carretera 25"},
+      {n:"Buriticá",p:"$440.000",d:"91,9 Km",t:"2H 8 min",r:"Occidente"},
+      {n:"Cáceres",p:"$540.000",d:"231 Km",t:"5H 6 min",r:"Carretera 25"},
+      {n:"Caicedo",p:"$440.000",d:"89,2 Km",t:"2H 44 min",r:"Via a Caicedo"},
+      {n:"Caldas",p:"Por taxímetro",d:"23,3 Km",t:"27 min",r:"Autopista Sur"},
+      {n:"Campamento",p:"$550.000",d:"142 Km",t:"3H 7 min",r:"Carretera 25"},
+      {n:"Cañasgordas",p:"$440.000",d:"113 Km",t:"2H 34 min",r:"Occidente"},
+      {n:"Caracolí",p:"$520.000",d:"139 Km",t:"2H 59 min",r:"Barbosa – Pto. Berrio"},
+      {n:"Caramanta",p:"$600.000",d:"118 Km",t:"2H 57 min",r:"Carretera 25"},
+      {n:"Carepa",p:"$1.090.000",d:"296 Km",t:"6H 1 min",r:"Occidente"},
+      {n:"Carmen de Viboral",p:"$198.000",d:"46,6 Km",t:"1H 3 min",r:"Tunel Occidente"},
+      {n:"Carolina del Príncipe",p:"$400.000",d:"101 Km",t:"2H 8 min",r:"Barbosa – Gomez Plata"},
+      {n:"Caucasia",p:"$950.000",d:"309 Km",t:"7H 8 min",r:"Carretera 25"},
+      {n:"Chigorodó",p:"$1.100.000",d:"285 Km",t:"5H 50 min",r:"Occidente"},
+      {n:"Cisneros",p:"$220.000",d:"84,8 Km",t:"1H 51 min",r:"Barbosa – Pto. Berrio"},
+      {n:"Ciudad Bolívar",p:"$420.000",d:"105 Km",t:"2H 18 min",r:"Carretera 60"},
+      {n:"Concepción",p:"$225.000",d:"62,9 Km",t:"1H 52 min",r:"Barbosa – Concepción"},
+      {n:"Concordia",p:"$250.000",d:"93,5 Km",t:"2H 12 min",r:"Carretera 60"},
+      {n:"Copacabana",p:"Por taxímetro",d:"17,7 Km",t:"27 min",r:"Autopista Norte"},
+      {n:"Dabeiba",p:"$601.000",d:"175 Km",t:"3H 52 min",r:"Carretera 62"},
+      {n:"Donmatías",p:"$180.000",d:"51,3 Km",t:"1H 10 min",r:"Carretera 25"},
+      {n:"Doradal",p:"$510.000",d:"171 Km",t:"3H 11 min",r:"Autopista Medellín – Bogotá"},
+      {n:"Ebéjico",p:"$230.000",d:"44,2 Km",t:"1H 15 min",r:"Medellín – Ebéjico"},
+      {n:"El Bagre",p:"$1.350.000",d:"207 Km",t:"4H 48 min",r:"Yolombó – Yalí"},
+      {n:"El Biscocho",p:"$410.000",d:"105 Km",t:"2H 20 min",r:"Autopista Medellín – Bogotá"},
+      {n:"El Peñol",p:"$231.000",d:"66,6 Km",t:"1H 21 min",r:"Marinilla – El Peñol"},
+      {n:"El Retiro",p:"$143.000",d:"32,4 Km",t:"46 min",r:"Palmas"},
+      {n:"El Santuario",p:"$209.000",d:"60,2 Km",t:"1H 7 min",r:"Autopista Medellín – Bogotá"},
+      {n:"Entrerríos",p:"$180.000",d:"55,1 Km",t:"1H 25 min",r:"Medellín – San Pedro"},
+      {n:"Envigado",p:"Por taxímetro",d:"10,9 Km",t:"23 min",r:"Autopista Sur"},
+      {n:"Fredonia",p:"$210.000",d:"55,6 Km",t:"1H 24 min",r:"Fredonia – Medellín"},
+      {n:"Frontino",p:"$600.000",d:"142 Km",t:"3H 15 min",r:"Occidente"},
+      {n:"Giraldo",p:"$440.000",d:"103 Km",t:"2H 44 min",r:"Occidente"},
+      {n:"Girardota",p:"Por taxímetro",d:"26,3 Km",t:"30 min",r:"Autopista Norte"},
+      {n:"Gómez Plata",p:"$390.000",d:"88,7 Km",t:"1H 50 min",r:"Barbosa – Gomez Plata"},
+      {n:"Granada",p:"$260.000",d:"73 Km",t:"1H 24 min",r:"Medellín – Bogotá"},
+      {n:"Guadalupe",p:"$420.000",d:"121 Km",t:"2H 35 min",r:"Barbosa – Gomez Plata"},
+      {n:"Guarne",p:"$132.000",d:"32,3 Km",t:"36 min",r:"Medellín – Bogota"},
+      {n:"Guatapé",p:"$275.000",d:"81,7 Km",t:"1H 47 min",r:"Marinilla – El Peñol"},
+      {n:"Heliconia",p:"$180.000",d:"41,5 Km",t:"1H 27 min",r:"San Antonio de Prado"},
+      {n:"Hispania",p:"$360.000",d:"97,4 Km",t:"2H 6 min",r:"Carretera 60"},
+      {n:"Hoyorico",p:"$240.000",d:"70,2 Km",t:"1H 3 min",r:"Carretera 25"},
+      {n:"Itagüí",p:"Por taxímetro",d:"12,9 Km",t:"23 min",r:"Autopista Sur"},
+      {n:"Ituango",p:"$830.000",d:"195 Km",t:"4H 16 min",r:"Carretera 25"},
+      {n:"Jardín",p:"$600.000",d:"139 Km",t:"3H 35 min",r:"Carretera 60"},
+      {n:"Jericó",p:"$350.000",d:"113 Km",t:"2H 46 min",r:"Via Jericó"},
+      {n:"La Ceja",p:"$154.000",d:"42,8 Km",t:"58 min",r:"Via las palmas"},
+      {n:"La Estrella",p:"Por taxímetro",d:"15,3 Km",t:"18 min",r:"Autopista Sur"},
+      {n:"La Fe",p:"$110.000",d:"29,4 Km",t:"40 min",r:"Via Palmas"},
+      {n:"La Pintada",p:"$310.000",d:"78,8 Km",t:"1H 55 min",r:"Carretera 25"},
+      {n:"La Unión",p:"$176.000",d:"57,1 Km",t:"1H 22 min",r:"Via las palmas"},
+      {n:"Llano Grande",p:"$143.000",d:"30 Km",t:"45 min",r:"Tunel Oriente"},
+      {n:"Liborina",p:"$370.000",d:"78,9 Km",t:"1H 56 min",r:"Carretera 62"},
+      {n:"Maceo",p:"$540.000",d:"132 Km",t:"2H 46 min",r:"Barbosa – Pto. Berrio"},
+      {n:"Marinilla",p:"$181.000",d:"48,2 Km",t:"52 min",r:"Oriente"},
+      {n:"Medellín",p:"Por taxímetro",d:"-",t:"-",r:"-"},
+      {n:"Montebello",p:"$210.000",d:"52,7 Km",t:"1H 20 min",r:"Santa Barbara – Caldas"},
+      {n:"Murindó",p:"$750.000",d:"162 Km",t:"N/A",r:"N/A"},
+      {n:"Mutatá",p:"$950.000",d:"227 Km",t:"4H 51 min",r:"Carretera 62"},
+      {n:"Nariño",p:"$590.000",d:"145 Km",t:"3H 38 min",r:"Carretera 56"},
+      {n:"Nechí",p:"$1.200.000",d:"368 Km",t:"8H 19 min",r:"Carretera 25"},
+      {n:"Necoclí",p:"$1.600.000",d:"380 Km",t:"7H 33 min",r:"Carretera 62"},
+      {n:"Olaya",p:"$300.000",d:"71,2 Km",t:"1H 45 min",r:"Carretera 62"},
+      {n:"Peque",p:"$720.000",d:"200 Km",t:"5H 28 min",r:"Occidente"},
+      {n:"Pueblorrico",p:"$350.000",d:"115 Km",t:"3H 1 min",r:"Carretera 60"},
+      {n:"Puerto Berrío",p:"$730.000",d:"183 Km",t:"3H 44 min",r:"Barbosa – Pto. Berrio"},
+      {n:"Puerto Nare",p:"$605.000",d:"226 Km",t:"4H 47 min",r:"Autop. Medellín Bogota"},
+      {n:"Puerto Triunfo",p:"$550.000",d:"185 Km",t:"3H 17 min",r:"Medellín – Bogota"},
+      {n:"Remedios",p:"$605.000",d:"189 Km",t:"3H 41 min",r:"Yolombo, Yalí"},
+      {n:"Rionegro",p:"$160.000",d:"33,4 Km",t:"43 min",r:"Tunel Oriente"},
+      {n:"Sabanalarga",p:"$540.000",d:"114 Km",t:"3H 27 min",r:"Carretera 62"},
+      {n:"Sabaneta",p:"Por taxímetro",d:"14,5 Km",t:"27 min",r:"Autopista Sur"},
+      {n:"Salgar",p:"$360.000",d:"94,5 Km",t:"2H 5 min",r:"Carretera 60"},
+      {n:"San Andrés de Cuerquia",p:"$425.000",d:"137 Km",t:"2H 51 min",r:"Carretera 25"},
+      {n:"San Carlos",p:"$480.000",d:"114 Km",t:"3H",r:"San Carlos – Granada"},
+      {n:"San Felix",p:"$89.000",d:"17,8 Km",t:"33 min",r:"Medellín – San Pedro"},
+      {n:"San Francisco",p:"$360.000",d:"106 Km",t:"2H 2 min",r:"Medellín – Bogota"},
+      {n:"San Jerónimo",p:"$210.000",d:"38,2 Km",t:"52 min",r:"Occidente"},
+      {n:"San José de la Montaña",p:"$320.000",d:"142 Km",t:"3H 11 min",r:"Carretera 25"},
+      {n:"San Luis",p:"$370.000",d:"133 Km",t:"2H 29 min",r:"Medellín – Bogota"},
+      {n:"San Pablo (Porce)",p:"$320.000",d:"78,5 Km",t:"1H 56 min",r:"Barbosa - Pto Berrio"},
+      {n:"San Pedro de los Milagros",p:"$130.000",d:"38 Km",t:"1H 3 min",r:"Medellín – San Pedro"},
+      {n:"San Pedro de Urabá",p:"$1.340.000",d:"388 Km",t:"8H 5 min",r:"Carretera 62"},
+      {n:"San Rafael",p:"$360.000",d:"108 Km",t:"2H 2 min",r:"Guatapé - San Rafael"},
+      {n:"San Roque",p:"$430.000",d:"106 Km",t:"2H 22 min",r:"Barbosa - Pto Berrio"},
+      {n:"San Vicente",p:"$160.000",d:"51,4 Km",t:"1H 4 min",r:"Tunel Oriente"},
+      {n:"Santa Bárbara",p:"$165.000",d:"52,4 Km",t:"1H 14 min",r:"Carretera 25"},
+      {n:"Santa Fe de Antioquia",p:"$250.000",d:"56,7 Km",t:"1H 18 min",r:"Occidente"},
+      {n:"Santa Rosa de Osos",p:"$240.000",d:"78,1 Km",t:"1H 42 min",r:"Carretera 25"},
+      {n:"Santo Domingo",p:"$310.000",d:"70,3 Km",t:"1H 27 min",r:"Barbosa – Santo Domingo"},
+      {n:"Segovia",p:"$730.000",d:"198 Km",t:"4H 3 min",r:"Yolombo, Yalí"},
+      {n:"Sonsón",p:"$390.000",d:"111 Km",t:"2H 40 min",r:"Carretera 56"},
+      {n:"Sopetrán",p:"$210.000",d:"49 Km",t:"1H 10 min",r:"Occidente"},
+      {n:"Támesis",p:"$350.000",d:"111 Km",t:"2H 42 min",r:"Carretera 25"},
+      {n:"Tarazá",p:"$550.000",d:"223 Km",t:"4H 51 min",r:"Carretera 25"},
+      {n:"Tarso",p:"$310.000",d:"101 Km",t:"2H 21 min",r:"Carretera 60"},
+      {n:"Titiribí",p:"$180.000",d:"57,3 Km",t:"1H 20 min",r:"Amagá – Caldas"},
+      {n:"Toledo",p:"$610.000",d:"174 Km",t:"3H 51 min",r:"Carretera 25"},
+      {n:"Turbo",p:"$1.330.000",d:"340 Km",t:"6H 52 min",r:"Carretera 62"},
+      {n:"Uramita",p:"$550.000",d:"140 Km",t:"3H 4 min",r:"Carretera 62"},
+      {n:"Urrao",p:"$540.000",d:"159 Km",t:"3H 57 min",r:"Urrao – Betulia"},
+      {n:"Valdivia",p:"$480.000",d:"181 Km",t:"4H 10 min",r:"Carretera 25"},
+      {n:"Valparaíso",p:"$300.000",d:"101 Km",t:"2H 23 min",r:"Carretera 25"},
+      {n:"Vegachí",p:"$590.000",d:"145 Km",t:"2H 45 min",r:"Yolombo, Yalí"},
+      {n:"Venecia",p:"$210.000",d:"58,6 Km",t:"1H 32 min",r:"Fredonia – Camilo C"},
+      {n:"Versalles",p:"$140.000",d:"41 Km",t:"55 min",r:"Santa Barbara – Caldas"},
+      {n:"Yalí",p:"$480.000",d:"129 Km",t:"2H 26 min",r:"Yolombo, Yalí"},
+      {n:"Yarumal",p:"$370.000",d:"122 Km",t:"2H 30 min",r:"Carretera 25"},
+      {n:"Yolombó",p:"$360.000",d:"99 Km",t:"1H 54 min",r:"Yolombo, Barbosa"},
+      {n:"Yondó",p:"$860.000",d:"280 Km",t:"6H 15 min",r:"Barbosa - Pto. Berrio"},
+      {n:"Zaragoza",p:"$1.080.000",d:"252 Km",t:"6H 27 min",r:"Carretera 25"}
+    ];
+
+    const WA="573008150549";
+    const PASS="1975";
+    const HORARIOS=["05:00","06:00","07:00","08:00","09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00"];
+    const GALERIA_URLS=[
+      "https://images.unsplash.com/photo-1583531352515-8884af319dc1?w=400",
+      "https://images.unsplash.com/photo-1599583649868-7f38e17675a3?w=400",
+      "https://images.unsplash.com/photo-1587595439717-464db3a5cce6?w=400",
+      "https://images.unsplash.com/photo-1531572753322-ad063cecc140?w=400",
+      "https://images.unsplash.com/photo-1596436889106-be35e843f974?w=400",
+      "https://images.unsplash.com/photo-1570789218527-54e9084af7aa?w=400"
+    ];
+    
+    const RESEÑAS_BASE=[
+      {nombre:"Mark & Lisa, USA", texto:"Excelente servicio. Don Omar fue muy puntual y el auto súper cómodo para ir a Guatapé. ¡Totalmente recomendado!"},
+      {nombre:"Sophie, Francia", texto:"Increíble experiencia. El conductor conoce muy bien las carreteras y nos sentimos muy seguros. El carro es perfecto para 3 personas."},
+      {nombre:"Hans, Alemania", texto:"Muy profesional y amable. Nos llevó a Jardín y el viaje fue espectacular. El aire acondicionado y la música fueron un gran plus."},
+      {nombre:"Sarah & John, UK", texto:"Absolutely fantastic service! Don Omar was punctual, professional, and the car was incredibly comfortable for our group of 3. Highly recommend for Guatapé tours!"},
+      {nombre:"Michael, Canada", texto:"Best decision we made in Medellín. Safe driving, great local tips, and a very clean, comfortable vehicle. 10/10 experience."},
+      {nombre:"Emma, Australia", texto:"Don Omar is a true gentleman. He made our trip to Santa Fe de Antioquia so easy and enjoyable. Perfect for small groups!"}
+    ];
+    
+    let reservas=[],clientes=[],horariosBlocked=[],reseñas=[...RESEÑAS_BASE];
+    let galeria=[...GALERIA_URLS];
+    let adminLogged=false,currentTab="reservas";
+    let tpCount=0,tpTimer=null;
+    
+    function load(){
+      try{const r=localStorage.getItem("dor_rv");if(r)reservas=JSON.parse(r);}catch{}
+      try{const c=localStorage.getItem("dor_cl");if(c)clientes=JSON.parse(c);}catch{}
+      try{const h=localStorage.getItem("dor_hb");if(h)horariosBlocked=JSON.parse(h);}catch{}
+      try{const re=localStorage.getItem("dor_re");if(re)reseñas=JSON.parse(re);}catch{}
+      try{const g=localStorage.getItem("dor_gal");if(g)galeria=JSON.parse(g);}catch{}
+    }
+    function save(k,d){try{localStorage.setItem(k,JSON.stringify(d));}catch{}}
+    
+    window.onload=function(){
+      load();
+      buildHorarioSelect();
+      renderGaleria();
+      renderReseñas();
+      renderMunicipiosList();
+      setLanguage(currentLang);
+    };
+    
+    function openPassModal(){
+      document.getElementById("passModal").style.display="flex";
+      document.getElementById("passInput").value="";
+      document.getElementById("passError").style.display="none";
+      setTimeout(()=>document.getElementById("passInput").focus(),100);
+    }
+    function closePassModal(){document.getElementById("passModal").style.display="none";}
+    function doLogin(){
+      if(document.getElementById("passInput").value===PASS){
+        closePassModal();adminLogged=true;
+        document.getElementById("appHome").style.display="none";
+        document.getElementById("appAdmin").style.display="block";
+        updateStats();setTab("reservas",document.querySelector(".tab-btn"));
+      }else{document.getElementById("passError").style.display="block";}
+    }
+    function salirAdmin(){
+      adminLogged=false;
+      document.getElementById("appAdmin").style.display="none";
+      document.getElementById("appHome").style.display="block";
+    }
+    function updateStats(){
+      document.getElementById("statRes").textContent=reservas.length;
+      document.getElementById("statCli").textContent=clientes.length;
+      document.getElementById("statRev").textContent=reseñas.length;
+    }
+    function setTab(t,btn){
+      currentTab=t;
+      document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+      if(btn)btn.classList.add("active");
+      renderTabContent();
+    }
+    function renderTabContent(){
+      const c=document.getElementById("tabContent");
+      if(currentTab==="reservas"){
+        if(reservas.length===0){c.innerHTML='<div style="text-align:center;color:#666;padding:26px" data-i18n="noBookings">No hay reservas aún</div>';return;}
+        c.innerHTML=reservas.map((r,i)=>`<div class="tab-item"><div class="tab-item-header"><div class="tab-item-title">${r.nombre}</div><div><button class="btn-sm btn-sm-danger" onclick="delRes(${i})" data-i18n="delete">Eliminar</button></div></div><div class="tab-item-sub">${r.recogida} → ${r.destino}</div><div class="tab-item-sub">${r.fecha} · ${r.horario}</div><div class="tab-item-sub">📞 ${r.numero}</div></div>`).join("");
+      }else if(currentTab==="clientes"){
+        if(clientes.length===0){c.innerHTML='<div style="text-align:center;color:#666;padding:26px" data-i18n="noClients">No hay clientes registrados</div>';return;}
+        c.innerHTML=clientes.map((c,i)=>`<div class="tab-item"><div class="tab-item-title">${c.nombre}</div><div class="tab-item-sub">📞 ${c.numero} · 📧 ${c.email||'N/A'}</div><div class="tab-item-sub">${c.viajes} viajes</div></div>`).join("");
+      }else if(currentTab==="reseñas"){
+        if(reseñas.length===0){c.innerHTML='<div style="text-align:center;color:#666;padding:26px" data-i18n="noReviews">No hay reseñas</div>';return;}
+        c.innerHTML=reseñas.map((r,i)=>`
+          <div class="tab-item">
+            <div class="tab-item-header">
+              <div class="tab-item-title">${r.nombre}</div>
+              <div>
+                <button class="btn-sm" onclick="editReseña(${i})" data-i18n="edit">Editar</button>
+                <button class="btn-sm btn-sm-danger" onclick="delReseña(${i})" data-i18n="delete">Eliminar</button>
+              </div>
+            </div>
+            <div class="tab-item-sub">${r.texto}</div>
+          </div>
+        `).join("");
+      }else if(currentTab==="horarios"){
+        c.innerHTML=`<div class="compartir-box"><div class="compartir-titulo" data-i18n="blockedTimes">Horarios bloqueados</div>${HORARIOS.map(h=>{const b=horariosBlocked.includes(h);return`<button class="btn-sm" style="margin:4px;background:${b?'rgba(255,71,87,0.2)':'rgba(0,212,255,0.15)'};border-color:${b?'#ff4757':'#00d4ff'};color:${b?'#ff4757':'#00d4ff'}" onclick="toggleHorario('${h}')">${h} ${b?'🚫':'✓'}</button>`}).join("")}</div>`;
+      }else if(currentTab==="galeria"){
+        c.innerHTML=`<div class="compartir-box"><div class="compartir-titulo" data-i18n="addImage">Agregar Imagen</div><input class="inp" id="newImgUrl" placeholder="URL de la imagen" style="margin-bottom:8px" data-i18n-ph="imageUrl"/><button class="btn-gold" onclick="addImagen()" data-i18n="add">Agregar</button></div><div class="gal-grid">${galeria.map((g,i)=>`<img src="${g}" class="gal-item" onclick="delImagen(${i})" style="border:2px solid rgba(255,71,87,0.4)"/>`).join("")}</div>`;
+      }else if(currentTab==="compartir"){
+        const url=window.location.href;
+        c.innerHTML=`<div class="compartir-box"><div class="compartir-titulo">WhatsApp</div><div class="compartir-url">${url}</div><button class="btn-copy" onclick="copyLink('${url}')" data-i18n="copyLink">Copiar Enlace</button></div><div class="compartir-box"><div class="compartir-titulo" data-i18n="shareWhatsApp">Compartir por WhatsApp</div><button class="btn-gold" onclick="shareWA()" data-i18n="shareWhatsApp">Compartir</button></div>`;
+      }
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[currentLang][key]) el.textContent = translations[currentLang][key];
+      });
+    }
+    
+    function editReseña(i) {
+      const newName = prompt(translations[currentLang].newReviewName, reseñas[i].nombre);
+      if (newName === null) return;
+      const newText = prompt(translations[currentLang].newReviewText, reseñas[i].texto);
+      if (newText === null) return;
+      
+      if (newName.trim() !== "" && newText.trim() !== "") {
+        reseñas[i].nombre = newName.trim();
+        reseñas[i].texto = newText.trim();
+        save("dor_re", reseñas);
+        renderReseñas();
+        renderTabContent();
+      }
+    }
+
+    function toggleHorario(h){
+      const i=horariosBlocked.indexOf(h);
+      if(i>-1)horariosBlocked.splice(i,1);else horariosBlocked.push(h);
+      save("dor_hb",horariosBlocked);setTab("horarios",document.querySelector(".tab-btn.active"));
+    }
+    function delRes(i){reservas.splice(i,1);save("dor_rv",reservas);updateStats();renderTabContent();}
+    function delReseña(i){reseñas.splice(i,1);save("dor_re",reseñas);updateStats();renderReseñas();renderTabContent();}
+    function addImagen(){const u=document.getElementById("newImgUrl").value.trim();if(!u)return;galeria.push(u);save("dor_gal",galeria);renderGaleria();renderTabContent();document.getElementById("newImgUrl").value="";}
+    function delImagen(i){galeria.splice(i,1);save("dor_gal",galeria);renderGaleria();renderTabContent();}
+    function copyLink(t){navigator.clipboard.writeText(t).then(()=>alert(translations[currentLang].copied));}
+    function shareWA(){const t=translations[currentLang].shareText;const u=encodeURIComponent(window.location.href);window.open(`https://wa.me/?text=${t}%20${u}`);}
+    
+    function toggleCard(t){
+      const b=document.getElementById("body"+t.charAt(0).toUpperCase()+t.slice(1));
+      const c=document.getElementById("chev"+t.charAt(0).toUpperCase()+t.slice(1));
+      const isOpen=b.classList.contains("open");
+      document.querySelectorAll(".card-body").forEach(x=>x.classList.remove("open"));
+      document.querySelectorAll(".card-chev").forEach(x=>x.style.transform="");
+      if(!isOpen){b.classList.add("open");if(c)c.style.transform="rotate(180deg)";}
+    }
+    
+    function toggleSection(s){
+      const galSec = document.getElementById('secGal');
+      const reseSec = document.getElementById('secRese');
+      const galBtn = document.getElementById('btnGal');
+      const reseBtn = document.getElementById('btnRese');
+      const galCh = document.getElementById('chevGal');
+      const reseCh = document.getElementById('chevRese');
+      
+      const galShowing = galSec.style.display === 'block';
+      const reseShowing = reseSec.style.display === 'block';
+      
+      galSec.style.display = 'none';
+      reseSec.style.display = 'none';
+      galBtn.style.background = '';
+      reseBtn.style.background = '';
+      galCh.style.transform = '';
+      reseCh.style.transform = '';
+      
+      if(s === 'gal' && !galShowing){
+        galSec.style.display = 'block';
+        galBtn.style.background = 'rgba(0, 212, 255, 0.25)';
+        galCh.style.transform = 'rotate(180deg)';
+      } else if(s === 'rese' && !reseShowing){
+        reseSec.style.display = 'block';
+        reseBtn.style.background = 'rgba(0, 212, 255, 0.25)';
+        reseCh.style.transform = 'rotate(180deg)';
+      }
+    }
+    
+    function buildHorarioSelect(){
+      const s=document.getElementById("fHorario");
+      HORARIOS.forEach(h=>{const o=document.createElement("option");o.value=h;o.textContent=h;s.appendChild(o);});
+    }
+    function confirmarReserva(){
+      const n=document.getElementById("fNombre").value.trim(),m=document.getElementById("fNumero").value.trim(),r=document.getElementById("fRecogida").value.trim(),d=document.getElementById("fDestino").value.trim(),f=document.getElementById("fFecha").value,h=document.getElementById("fHorario").value;
+      if(!n||!m||!r||!d||!f||!h){alert("Completa todos los campos");return;}
+      reservas.push({nombre:n,numero:m,recogida:r,destino:d,fecha:f,horario:h});
+      save("dor_rv",reservas);
+      let cl=clientes.find(c=>c.numero===m);if(cl)cl.viajes++;else clientes.push({nombre:n,numero:m,email:"",viajes:1});
+      save("dor_cl",clientes);
+      const t=`🚖 *Nueva Reserva*%0A%0A👤 *Nombre:* ${n}%0A📞 *Teléfono:* ${m}%0A📍 *Recogida:* ${r}%0A🏁 *Destino:* ${d}%0A📅 *Fecha:* ${f}%0A⏰ *Hora:* ${h}`;
+      window.open(`https://wa.me/${WA}?text=${t}`,"_blank");
+      document.getElementById("reservaOk").style.display="block";
+      ["fNombre","fNumero","fRecogida","fDestino","fFecha","fHorario"].forEach(i=>document.getElementById(i).value="");
+      setTimeout(()=>document.getElementById("reservaOk").style.display="none",5e3);
+      toggleCard("res");
+    }
+    
+    function toggleMunicipiosList(){
+      const container = document.getElementById('municipiosListContainer');
+      const btn = document.getElementById('btnVerMunicipios');
+      if(container.style.display === 'none'){
+        container.style.display = 'block';
+        btn.textContent = currentLang === 'es' ? 'Ocultar Listado' : 'Hide List';
+        renderMunicipiosList();
+      } else {
+        container.style.display = 'none';
+        btn.textContent = translations[currentLang].viewList;
+      }
+    }
+    
+    function renderMunicipiosList(filterText = ''){
+      const grid = document.getElementById('municipiosGrid');
+      const filtered = MUNICIPIOS_DATA.filter(m => m.n.toLowerCase().includes(filterText.toLowerCase()));
+      
+      if(filtered.length === 0){
+        grid.innerHTML = `<div style="text-align:center;color:#888;padding:20px;">${currentLang === 'es' ? 'No se encontraron municipios' : 'No municipalities found'}</div>`;
+        return;
+      }
+      
+      grid.innerHTML = filtered.map(m => `
+        <div class="mun-item">
+          <div class="mun-name">${m.n}</div>
+          <div class="mun-details">
+            <div><div class="mun-detail-label">${translations[currentLang].price}</div><div class="mun-detail-value" style="color:#00d4ff">${m.p}</div></div>
+            <div><div class="mun-detail-label">${translations[currentLang].distance}</div><div class="mun-detail-value">${m.d}</div></div>
+            <div><div class="mun-detail-label">${translations[currentLang].time}</div><div class="mun-detail-value">${m.t}</div></div>
+          </div>
+          <div class="mun-route">🛣️ ${m.r}</div>
+          <button class="btn-gold-sm" onclick="reservarMunicipio('${m.n}')" data-i18n="bookNow">${translations[currentLang].bookNow}</button>
+        </div>
+      `).join('');
+    }
+    
+    function filterMunicipios(){
+      const query = document.getElementById('searchMun').value;
+      renderMunicipiosList(query);
+    }
+    
+    function reservarMunicipio(nombreMun){
+      document.getElementById("fDestino").value = nombreMun;
+      document.getElementById("fRecogida").value = "Medellín";
+      toggleCard("antioquia");
+      toggleCard("res");
+      document.getElementById("fNombre").focus();
+      window.scrollTo({top: document.getElementById("cardRes").offsetTop - 20, behavior: 'smooth'});
+    }
+    
+    function renderGaleria(){document.getElementById("galeriaGrid").innerHTML=galeria.map(g=>`<img src="${g}" class="gal-item" onclick="openImgModal('${g}')"/>`).join("");}
+    function renderReseñas(){
+      const l=document.getElementById("reseñasList");
+      if(reseñas.length===0){l.innerHTML='<div style="text-align:center;color:#666;padding:26px" data-i18n="noReviews">No hay reseñas</div>';return;}
+      l.innerHTML=reseñas.map(r=>`<div class="reseña-item"><div class="reseña-nombre">${r.nombre}</div><div class="reseña-texto">${r.texto}</div></div>`).join("");
+    }
+    function enviarReseña(){
+      const n=document.getElementById("reseñaNombre").value.trim(),t=document.getElementById("reseñaTexto").value.trim();
+      if(!n||!t){alert("Completa todos los campos");return;}
+      reseñas.push({nombre:n,texto:t,fecha:new Date().toISOString()});
+      save("dor_re",reseñas);
+      document.getElementById("reseñaForm").style.display="none";
+      document.getElementById("reseñaOk").style.display="block";
+      renderReseñas();
+      setTimeout(()=>{document.getElementById("reseñaOk").style.display="none";document.getElementById("reseñaForm").style.display="block";document.getElementById("reseñaNombre").value="";document.getElementById("reseñaTexto").value="";},3500);
+    }
+    function openImgModal(s){document.getElementById("imgModalSrc").src=s;document.getElementById("imgModal").style.display="flex";}
+    function closeImgModal(){document.getElementById("imgModal").style.display="none";}
+  </script>
+</body>
+</html>
+
